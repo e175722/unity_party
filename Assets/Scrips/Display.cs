@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+<<<<<<< HEAD
 
 public class Display : MonoBehaviour
 {
@@ -26,4 +27,29 @@ public class Display : MonoBehaviour
 //             temp = Test.GetName();
 //             print(temp);
 //         }
+=======
+using UnityEngine.UI;
+
+public class Display : MonoBehaviour
+{
+	private Text targetText;
+
+	void Start()
+	{
+		targetText = GetComponent<Text>();
+		targetText.text = SaveName.name;
+	}
+
+	void Update()
+	{
+	
+	}
+
+	//void SetName()
+	//{
+	//	this.targetText = this.GetComponent<Text>();
+	//	this.targetText.text = SaveName.name.ToString();
+	//	Debug.Log("This Scene is Main. Name is " + SaveName.name);
+	//}
+>>>>>>> 7596ef7bf7eca599e1fcd65c86d31c392b771699
 }

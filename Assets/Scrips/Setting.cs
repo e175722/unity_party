@@ -9,4 +9,8 @@ public class Setting : MonoBehaviour {
             Application.LoadLevel ("Setting");
         }
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 7596ef7bf7eca599e1fcd65c86d31c392b771699
