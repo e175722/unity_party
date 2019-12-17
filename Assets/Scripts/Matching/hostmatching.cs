@@ -6,7 +6,8 @@ using System.Collections;
 
 // MonoBehaviourではなくMonoBehaviourPunCallbacksを継承して、Photonのコールバックを受け取れるようにする
 public class hostmatching : MonoBehaviourPunCallbacks
-{    
+{
+        
     private void Start() {
         // PhotonServerSettingsに設定した内容を使ってマスターサーバーへ接続する
         PhotonNetwork.ConnectUsingSettings();
