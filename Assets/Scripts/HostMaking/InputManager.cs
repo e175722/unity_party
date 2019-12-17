@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 //追加する！
 using UnityEngine.UI;
+using Photon.Pun;
  
 public class InputManager : MonoBehaviour {
  
@@ -11,9 +12,14 @@ public class InputManager : MonoBehaviour {
   public Text text;
   public static string roomID;
   public static bool isGuest = false;
+  
  
   void Start () {
-    //Componentを扱えるようにする
+      //プレイヤー名をランダムで作成
+      PhotonNetwork.LocalPlayer.NickName = "プレイヤー"  + UnityEngine.Random.Range(1000, 9999); 
+       
+     //Componentを扱えるようにする
+        
              inputField = inputField.GetComponent<InputField> ();
               if (Application.loadedLevelName == "HostMaking") {
                   text = text.GetComponent<Text> ();
