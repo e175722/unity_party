@@ -7,6 +7,8 @@ using System.Collections;
 // MonoBehaviourではなくMonoBehaviourPunCallbacksを継承して、Photonのコールバックを受け取れるようにする
 public class hostmatching : MonoBehaviourPunCallbacks
 {    
+    public static int playerID;
+    
     private void Start() {
         // PhotonServerSettingsに設定した内容を使ってマスターサーバーへ接続する
         PhotonNetwork.ConnectUsingSettings();
@@ -30,6 +32,8 @@ public class hostmatching : MonoBehaviourPunCallbacks
     // マッチングが成功した時に呼ばれるコールバック
     public override void OnJoinedRoom() {
         var v = new Vector3(Random.Range(-3f, 3f), Random.Range(-3f, 3f));
-        PhotonNetwork.Instantiate("GamePlayer", v, Quaternion.identity);      
+        PhotonNetwork.Instantiate("GamePlayer", v, Quaternion.identity); 
+        playerID = PhotonNetwork.LocalPlayer.ActorNumber;
+        Debug.Log("playerID = " + playerID); 
     }
 }

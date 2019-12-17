@@ -37,6 +37,10 @@ public class SaveName : MonoBehaviour
 		Debug.Log("名前が登録されました");
 		//Debug.Log("GetName()");
 	}
+	
+	public static string getName(){
+         return name;
+     }
 
 	public void SaveText()
 	{
