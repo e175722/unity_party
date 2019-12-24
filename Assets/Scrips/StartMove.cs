@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class StartMove : MonoBehaviour {
 
@@ -12,8 +13,15 @@ public class StartMove : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
+        bool resString = PlayerPrefs.HasKey("SetName");
         if (Input.GetKey(KeyCode.Space)) {
-            SceneManager.LoadScene("Sign Up");
+            if (resString)
+            {
+              SceneManager.LoadScene("Main");
+            }else{
+              SceneManager.LoadScene("Sign Up");
+            }
         }
+    		Debug.Log(resString);
     }
 }

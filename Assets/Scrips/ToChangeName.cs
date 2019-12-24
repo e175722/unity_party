@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class ToMain : MonoBehaviour
+public class ToChangeName : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()
@@ -18,13 +18,11 @@ public class ToMain : MonoBehaviour
 
     }
 
-	public void NextScene()
-	{
-		if (Application.loadedLevelName == "Sign Up")
-		{
-			Application.LoadLevel("Main");
-    }else if(Application.loadedLevelName == "ChangeName"){
-      Application.LoadLevel("Main");
-    }
-	}
+    public void NextScene()
+  	{
+  		if (Application.loadedLevelName == "Setting")
+  		{
+  			Application.LoadLevel("ChangeName");
+      }
+  	}
 }

@@ -18,10 +18,7 @@ public class BackScene : MonoBehaviour
 
 	public void Back()
 	{
-		if (Application.loadedLevelName == "Main")
-		{
-			Application.LoadLevel("Sign Up");
-		}else if(Application.loadedLevelName == "Sign Up"){
+		if(Application.loadedLevelName == "Sign Up"){
       Application.LoadLevel("Start");
     }else if(Application.loadedLevelName == "Setting"){
       Application.LoadLevel("Main");
@@ -35,6 +32,8 @@ public class BackScene : MonoBehaviour
       Application.LoadLevel("Private");
     }else if(Application.loadedLevelName == "Free"){
       Application.LoadLevel("Room");
+    }else if(Application.loadedLevelName == "ChangeName"){
+      Application.LoadLevel("Setting");
     }
 	}
 

@@ -16,18 +16,18 @@ public class InputManager : MonoBehaviour {
  
   void Start () {
       //プレイヤー名をランダムで作成
-      PhotonNetwork.LocalPlayer.NickName = "プレイヤー"  + UnityEngine.Random.Range(1000, 9999); 
-       
+      PhotonNetwork.LocalPlayer.NickName = "プレイヤー"  + PlayerPrefs.GetString("SetName");
+      
      //Componentを扱えるようにする
         
-             inputField = inputField.GetComponent<InputField> ();
-              if (Application.loadedLevelName == "HostMaking") {
-                  text = text.GetComponent<Text> ();
-                }
+      inputField = inputField.GetComponent<InputField> ();
+      if (Application.loadedLevelName == "HostMaking") {
+            text = text.GetComponent<Text> ();
+      }
       if (Application.loadedLevelName == "GuestEnter") {
             isGuest = true;
         }
-        Debug.Log(isGuest);
+        Debug.Log("guest : " + isGuest);
     }
  
     public void InputText(){
