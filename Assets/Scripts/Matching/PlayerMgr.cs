@@ -54,6 +54,11 @@ public class PlayerMgr : MonoBehaviour, Photon.Pun.IPunObservable
     // Update is called once per frame
     void Update()
     {
+        if( photonView.IsMine == true ){
+            Answer.text = testInput.getAns();
+		}
+        
+    /*
         timeElapsed += Time.deltaTime;
 
         if(timeElapsed >= timeOut) {
@@ -63,5 +68,6 @@ public class PlayerMgr : MonoBehaviour, Photon.Pun.IPunObservable
 
             timeElapsed = 0.0f;
         }
+        */
     }
 }
