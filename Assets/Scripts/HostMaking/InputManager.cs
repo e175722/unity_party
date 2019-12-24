@@ -16,7 +16,7 @@ public class InputManager : MonoBehaviour {
  
   void Start () {
       //プレイヤー名をランダムで作成
-      PhotonNetwork.LocalPlayer.NickName = "プレイヤー"  + PlayerPrefs.GetString("SetName");
+      //PhotonNetwork.LocalPlayer.NickName = "プレイヤー"  + UnityEngine.Random.Range(1000,9999);
        
      //Componentを扱えるようにする
         
