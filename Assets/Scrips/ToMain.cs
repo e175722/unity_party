@@ -20,11 +20,12 @@ public class ToMain : MonoBehaviour
 
 	public void NextScene()
 	{
-		if (Application.loadedLevelName == "Sign Up")
-		{
+		if (Application.loadedLevelName == "Sign Up"){
 			Application.LoadLevel("Main");
-    }else if(Application.loadedLevelName == "ChangeName"){
-      Application.LoadLevel("Main");
-    }
+        }else if(Application.loadedLevelName == "ChangeName"){
+            Application.LoadLevel("Main");
+        }else if(Application.loadedLevelName == "Answer"){
+            Application.LoadLevel("Main");
+        }
 	}
 }
