@@ -8,7 +8,6 @@ using System.Collections;
 public class hostmatching : MonoBehaviourPunCallbacks
 {    
     public static int playerID;
-    
     private void Start() {
         // PhotonServerSettingsに設定した内容を使ってマスターサーバーへ接続する
         PhotonNetwork.ConnectUsingSettings();

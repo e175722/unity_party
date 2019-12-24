@@ -15,13 +15,14 @@ public class PlayerMgr : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {    
-        Vector3 Ppos = playerObj.transform.position;
+        //プレイヤーネームのtext位置を取得
+        Vector3 Ppos = PlayerName.transform.position;
         
-        PlayerName.text = PhotonNetwork.LocalPlayer.NickName;
-        
-        if(photonView.IsMine == true){
-            PlayerName.transform.position = new Vector3(Ppos.x+100, Ppos.y+400, Ppos.z);
-        }
+        //photonViewオーナーの名前をテキスト表示
+        PlayerName.text = photonView.Owner.NickName;
+     
+        //プレイヤーネームのtext位置を決定(入ってきた順に羅列されるように)
+        PlayerName.transform.position = new Vector3(Ppos.x, Ppos.y - (photonView.Owner.ActorNumber)*50, Ppos.z );         
     
         Debug.Log("プレイヤー名の座標" + PlayerName.transform.position);
         Debug.Log("点の座標 : " + Ppos);
