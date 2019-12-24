@@ -30,7 +30,6 @@ public class hostmatching : MonoBehaviourPunCallbacks
 
     // マッチングが成功した時に呼ばれるコールバック
     public override void OnJoinedRoom() {
-        PhotonNetwork.LocalPlayer.NickName = "プレイヤー"  + UnityEngine.Random.Range(1000,9999);
         var v = new Vector3(Random.Range(-3f, 3f), Random.Range(-3f, 3f));
         PhotonNetwork.Instantiate("GamePlayer", v, Quaternion.identity); 
         playerID = PhotonNetwork.LocalPlayer.ActorNumber;
