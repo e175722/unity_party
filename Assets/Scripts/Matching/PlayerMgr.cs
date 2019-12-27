@@ -9,6 +9,8 @@ public class PlayerMgr : MonoBehaviour, Photon.Pun.IPunObservable
 {
 
     public Text PlayerName;
+    public GameObject nameTextObj;
+    public GameObject AnsTextObj;
     public GameObject playerObj;
     public PhotonView photonView;
     public Text Answer;
@@ -26,20 +28,39 @@ public class PlayerMgr : MonoBehaviour, Photon.Pun.IPunObservable
         //プレイヤーネームのtext位置を決定(入ってきた順に羅列されるように)
         PlayerName.transform.position = new Vector3(Ppos.x, Ppos.y - (photonView.Owner.ActorNumber)*50, Ppos.z );
         Answer.transform.position = new Vector3(Ppos.x + 200, Ppos2.y - (photonView.Owner.ActorNumber)*50, Ppos2.z );     
-    
+            
         Debug.Log("プレイヤー名の座標" + PlayerName.transform.position);
         Debug.Log("点の座標 : " + Ppos);
+        
+        //ネットワークオブジェクトを消去しない設定
+        DontDestroyOnLoad(this);
+        
     }
 
     // Update is called once per frame
     void Update()
     {
+        //シーンによってネットワークオブジェクトをアクティブ化
+        if (Application.loadedLevelName == "Matching" || Application.loadedLevelName == "Talking") {
+            nameTextObj.SetActive (true);
+        }else{
+            nameTextObj.SetActive (false);
+        }
+        
+        //シーンによってネットワークオブジェクトをアクティブ化
+        if (Application.loadedLevelName == "Talking") {
+            AnsTextObj.SetActive (true);
+        }else{
+            AnsTextObj.SetActive (false);
+        }
+
+        //text表示
         if( photonView.IsMine == true ){
-            Answer.text = testInput.getAns();
-  }
+            Answer.text = GameMaking.getIdea();
+        }
+
     }
         
-    
     void IPunObservable.OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info) {
         if (stream.IsWriting) {
             // 自身側が生成したオブジェクトの場合は
