@@ -124,6 +124,7 @@ GameObject:
   - component: {fileID: 258566322}
   - component: {fileID: 258566321}
   - component: {fileID: 258566320}
+  - component: {fileID: 258566324}
   - component: {fileID: 258566323}
   m_Layer: 5
   m_Name: Button
@@ -203,6 +204,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 258566324}
+        m_MethodName: isDoneChange
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &258566321
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -250,7 +262,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed2103dffb2204138b6cd3db4d9baec3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  photonView: {fileID: 0}
+--- !u!114 &258566324
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 258566318}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01a85f31e1daa49be946e78bef492083, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DoneButton: {fileID: 258566318}
 --- !u!1 &875064678
 GameObject:
   m_ObjectHideFlags: 0

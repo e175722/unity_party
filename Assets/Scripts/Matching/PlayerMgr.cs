@@ -14,7 +14,7 @@ public class PlayerMgr : MonoBehaviour, Photon.Pun.IPunObservable
     public GameObject playerObj;
     public PhotonView photonView;
     public Text Answer;
-    public static bool isDone = false;
+    public bool isDone_PlayerMgr;
     
     // Start is called before the first frame update
     void Start()
@@ -29,13 +29,9 @@ public class PlayerMgr : MonoBehaviour, Photon.Pun.IPunObservable
         //プレイヤーネームのtext位置を決定(入ってきた順に羅列されるように)
         PlayerName.transform.position = new Vector3(Ppos.x, Ppos.y - (photonView.Owner.ActorNumber)*50, Ppos.z );
         Answer.transform.position = new Vector3(Ppos.x + 200, Ppos2.y - (photonView.Owner.ActorNumber)*50, Ppos2.z );     
-            
-        Debug.Log("プレイヤー名の座標" + PlayerName.transform.position);
-        Debug.Log("点の座標 : " + Ppos);
-        
+                    
         //ネットワークオブジェクトを消去しない設定
-        DontDestroyOnLoad(this);
-        
+        DontDestroyOnLoad(this);  
         
     }
 
@@ -55,19 +51,16 @@ public class PlayerMgr : MonoBehaviour, Photon.Pun.IPunObservable
         }else{
             AnsTextObj.SetActive (false);
         }
-
-        
         
         //text表示
         if( photonView.IsMine == true ){
             Answer.text = GameMaking.getIdea();
         }
         
-        //完了ボタンを押したなら画面遷移
-        if(isDone == true){
-            Application.LoadLevel ("Question");
-            isDone = false;
-        }
+        //完了ボタンを押したならtrueを更新
+        isDone_PlayerMgr = ButtonMgr.isDone;
+        
+            
         
 
     }
@@ -77,17 +70,21 @@ public class PlayerMgr : MonoBehaviour, Photon.Pun.IPunObservable
             // 自身側が生成したオブジェクトの場合は
             // 色相値と移動中フラグのデータを送信する
             stream.SendNext(Answer.text);
-            if(photonView.Owner.ActorNumber == 1){
-                stream.SendNext(isDone);
-                Debug.Log("Send_isDone : " + isDone);
-            }
-        } else {
+            stream.SendNext(isDone_PlayerMgr);
+            ButtonMgr.isDone = false;
+        }else {
             // 他プレイヤー側が生成したオブジェクトの場合は
             // 受信したデータから色相値と移動中フラグを更新する
             Answer.text = Convert.ToString(stream.ReceiveNext());
-            isDone = Convert.ToBoolean(stream.ReceiveNext());
-            //Debug.Log("Receive_isDone : " + isDone);
-
+            isDone_PlayerMgr = Convert.ToBoolean(stream.ReceiveNext());
+            if(isDone_PlayerMgr == true){
+                if(Application.loadedLevelName == "Matching" || Application.loadedLevelName == "Answer"){
+                    Application.LoadLevel ("Question");
+                }else if(Application.loadedLevelName == "Talking"){
+                    Application.LoadLevel ("Voting");
+                }
+                ButtonMgr.isDone = false;
+            }
         }
     }
 }

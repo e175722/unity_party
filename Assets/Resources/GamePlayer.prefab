@@ -377,6 +377,7 @@ MonoBehaviour:
   playerObj: {fileID: 5811016708383717232}
   photonView: {fileID: 5811016708383717134}
   Answer: {fileID: 4262750784482492664}
+  isDone_PlayerMgr: 0
 --- !u!114 &2789116576548353123
 MonoBehaviour:
   m_ObjectHideFlags: 0
