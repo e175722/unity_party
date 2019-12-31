@@ -36,6 +36,18 @@ EditorBuildSettings:
     path: Assets/Scenes/Setting.unity
     guid: cfb1818baea7841d89f532ce88d4c308
   - enabled: 1
+    path: Assets/Scenes/Answer.unity
+    guid: 2fa32fc45092a4611a80d7250865bd9f
+  - enabled: 1
     path: Assets/Scenes/Sign Up.unity
     guid: b6d6bfceb2332454e9a12763ae15e6a3
+  - enabled: 1
+    path: Assets/Scenes/Talking.unity
+    guid: 72c5d47343768418aaabe73ebf4fd090
+  - enabled: 1
+    path: Assets/Scenes/Voting.unity
+    guid: 33f78bba68ab64c71b958f07686e1c55
+  - enabled: 1
+    path: Assets/Scenes/Question.unity
+    guid: 1c56b03855a314c9aab762a4a008b8d4
   m_configObjects: {}

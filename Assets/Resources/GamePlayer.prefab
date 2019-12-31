@@ -379,6 +379,7 @@ MonoBehaviour:
   buttonObj: {fileID: 8464233573883833777}
   photonView: {fileID: 5811016708383717134}
   Answer: {fileID: 4262750784482492664}
+  sign: 
 --- !u!114 &2789116576548353123
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -483,7 +484,7 @@ GameObject:
   - component: {fileID: 9135565398145915998}
   - component: {fileID: 8756161041639850862}
   - component: {fileID: 9014787845714768537}
-  - component: {fileID: 1045651340774003749}
+  - component: {fileID: 6925630295898802790}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -586,7 +587,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1045651340774003749}
+      - m_Target: {fileID: 6925630295898802790}
         m_MethodName: OnClick
         m_Mode: 1
         m_Arguments:
@@ -597,7 +598,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &1045651340774003749
+--- !u!114 &6925630295898802790
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -606,8 +607,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 8464233573883833777}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 07c9803050b6e4a4b9e6c0ee174773c9, type: 3}
+  m_Script: {fileID: 11500000, guid: 2821db1403781463fa40577b86da600d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputField: {fileID: 0}
-  testText: {fileID: 0}
+  obj: {fileID: 8464233573883833777}
+  voteStr: 

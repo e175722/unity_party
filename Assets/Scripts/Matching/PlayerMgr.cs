@@ -16,6 +16,9 @@ public class PlayerMgr : MonoBehaviour, Photon.Pun.IPunObservable
     public PhotonView photonView;
     public Text Answer;
     public static bool isDone = false;
+    public static string buttonLabel;
+    public string sign;
+    public static string[] ansArray = new string[4];
 
     // Start is called before the first frame update
     void Start()
@@ -35,10 +38,11 @@ public class PlayerMgr : MonoBehaviour, Photon.Pun.IPunObservable
 
         Debug.Log("プレイヤー名の座標" + PlayerName.transform.position);
         Debug.Log("点の座標 : " + Ppos);
+        Debug.Log("ボタンの座標 : " + Ppos3);
 
+        sign = Convert.ToString(photonView.Owner.ActorNumber);
         //ネットワークオブジェクトを消去しない設定
         DontDestroyOnLoad(this);
-
 
     }
 
@@ -70,16 +74,28 @@ public class PlayerMgr : MonoBehaviour, Photon.Pun.IPunObservable
         if( photonView.IsMine == true ){
             Answer.text = GameMaking.getIdea();
             //それぞれのボタンのラベルに答えを入れる
-            buttonObj.transform.Find("Text").GetComponent<Text>().text = GameMaking.getIdea();
+            //buttonObj.transform.Find("Text").GetComponent<Text>().text = GameMaking.getIdea();
+            if(GameMaking.getIdea() != null){
+              buttonObj.transform.Find("Text").GetComponent<Text>().text = GameMaking.getIdea();
+            sign = Convert.ToString(photonView.Owner.ActorNumber) + GameMaking.getIdea();
+            ansArray[photonView.Owner.ActorNumber-1] = GameMaking.getIdea();
+          }
+            // Debug.Log(ansArray[0]);
         }
 
         //完了ボタンを押したなら画面遷移
         if(isDone == true){
-            Application.LoadLevel ("Question");
+            Application.LoadLevel("Question");
 
             isDone = false;
         }
     }
+
+
+    // public static string getLabel(){
+    //   buttonLabel = buttonObj.transform.Find("Text").GetComponent<Text>().text;
+    //   return buttonLabel;
+    // }
 
     void IPunObservable.OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info) {
         if (stream.IsWriting) {
@@ -88,14 +104,18 @@ public class PlayerMgr : MonoBehaviour, Photon.Pun.IPunObservable
             stream.SendNext(Answer.text);
             stream.SendNext(isDone);
             stream.SendNext(buttonObj.transform.Find("Text").GetComponent<Text>().text);
-            Debug.Log("Send_isDone : " + isDone);
+            stream.SendNext(sign);
+            //Debug.Log("Send_isDone : " + isDone);
         } else {
             // 他プレイヤー側が生成したオブジェクトの場合は
             // 受信したデータから色相値と移動中フラグを更新する
             Answer.text = Convert.ToString(stream.ReceiveNext());
             isDone = Convert.ToBoolean(stream.ReceiveNext());
-            buttonObj.transform.Find("Text").GetComponent<Text>().text = Convert.ToString(stream.ReceiveNext());
-            Debug.Log("Receive_isDone : " + isDone);
+            string value = Convert.ToString(stream.ReceiveNext());
+            buttonObj.transform.Find("Text").GetComponent<Text>().text = value;
+            string temp = Convert.ToString(stream.ReceiveNext());
+            ansArray[Convert.ToInt32(temp.Substring(0,1))-1] = temp.Substring(1,temp.Length-1);
+            //Debug.Log("Receive_isDone : " + isDone);
 
         }
     }
