@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using Photon.Pun;
 
 public class ToMain : MonoBehaviour
 {
@@ -26,6 +27,7 @@ public class ToMain : MonoBehaviour
             Application.LoadLevel("Main");
         }else if(Application.loadedLevelName == "Answer"){
             Application.LoadLevel("Main");
+            PhotonNetwork.LeaveRoom ();
         }
 	}
 }

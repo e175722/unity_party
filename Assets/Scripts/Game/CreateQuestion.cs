@@ -11,7 +11,7 @@ public class CreateQuestion : MonoBehaviourPunCallbacks
 {
     public Text text;
     private static string hiragana = "あいうえおかきくけこさしすせそたちつてとなにねのはひふへほまみむめもらりるれろやゆよわ";
-    private static string[] odai = new string[7] {"有名人", "夏の果物", "冬の果物", "夏の曲", "冬の曲", "今話題の人", "黒歴史"};
+    private static string[] odai = new string[9] {"有名人", "夏の果物", "冬の果物", "夏の曲", "冬の曲", "今話題の人", "黒歴史","言われて嬉しい言葉","言われたら嫌な言葉"};
     private static string sentense;
     private static Hashtable roomHash = new Hashtable();
  
@@ -20,7 +20,7 @@ public class CreateQuestion : MonoBehaviourPunCallbacks
     {   
         if (Application.loadedLevelName == "Question") {
             if(PhotonNetwork.IsMasterClient){
-                sentense = "「" + hiragana[UnityEngine.Random.Range(0, 42)] + "」で始まる" + odai[UnityEngine.Random.Range(0, 6)] + "といえば";
+                sentense = "「" + hiragana[UnityEngine.Random.Range(0, 42)] + "」で始まる" + odai[UnityEngine.Random.Range(0, 8)] + "といえば";
                 roomHash["sentense"] = sentense;
                 PhotonNetwork.CurrentRoom.SetCustomProperties(roomHash);
                 //Debug.Log(sentense);

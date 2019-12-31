@@ -22,6 +22,7 @@ public class InputManager : MonoBehaviour {
         
       inputField = inputField.GetComponent<InputField> ();
       if (Application.loadedLevelName == "HostMaking") {
+            isGuest = false;
             text = text.GetComponent<Text> ();
       }
       if (Application.loadedLevelName == "GuestEnter") {
