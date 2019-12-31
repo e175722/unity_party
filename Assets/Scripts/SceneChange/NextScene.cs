@@ -5,7 +5,6 @@ using Photon.Pun;
 
 public class NextScene : MonoBehaviour
 {
-    public PhotonView photonView;
     
     // Start is called before the first frame update
     void Start()
@@ -25,7 +24,9 @@ public class NextScene : MonoBehaviour
         }else if(Application.loadedLevelName == "GuestEnter") {
             Application.LoadLevel ("Matching");
         //Matchingのシーンに関してはルーム作成者のみ画面遷移の権限を持たせる
-        }else if(Application.loadedLevelName == "Matching" /*&& PhotonNetwork.LocalPlayer.ActorNumber == 1*/ ) {
+        }else if(Application.loadedLevelName == "Matching" && PhotonNetwork.LocalPlayer.ActorNumber == 1) {
+            PlayerMgr.isDone = true;
+            Debug.Log("isDone : " + PlayerMgr.isDone);
             Application.LoadLevel ("Question");
         }else if(Application.loadedLevelName == "Question") {
             Application.LoadLevel ("Talking");

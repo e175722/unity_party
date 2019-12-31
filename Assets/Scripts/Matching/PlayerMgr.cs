@@ -56,6 +56,8 @@ public class PlayerMgr : MonoBehaviour, Photon.Pun.IPunObservable
             AnsTextObj.SetActive (false);
         }
 
+        
+        
         //text表示
         if( photonView.IsMine == true ){
             Answer.text = GameMaking.getIdea();
@@ -64,7 +66,6 @@ public class PlayerMgr : MonoBehaviour, Photon.Pun.IPunObservable
         //完了ボタンを押したなら画面遷移
         if(isDone == true){
             Application.LoadLevel ("Question");
-            
             isDone = false;
         }
         
@@ -76,14 +77,16 @@ public class PlayerMgr : MonoBehaviour, Photon.Pun.IPunObservable
             // 自身側が生成したオブジェクトの場合は
             // 色相値と移動中フラグのデータを送信する
             stream.SendNext(Answer.text);
-            stream.SendNext(isDone);
-            Debug.Log("Send_isDone : " + isDone);
+            if(photonView.Owner.ActorNumber == 1){
+                stream.SendNext(isDone);
+                Debug.Log("Send_isDone : " + isDone);
+            }
         } else {
             // 他プレイヤー側が生成したオブジェクトの場合は
             // 受信したデータから色相値と移動中フラグを更新する
             Answer.text = Convert.ToString(stream.ReceiveNext());
             isDone = Convert.ToBoolean(stream.ReceiveNext());
-            Debug.Log("Receive_isDone : " + isDone);
+            //Debug.Log("Receive_isDone : " + isDone);
 
         }
     }
