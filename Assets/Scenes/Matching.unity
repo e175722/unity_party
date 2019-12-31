@@ -250,6 +250,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed2103dffb2204138b6cd3db4d9baec3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  photonView: {fileID: 0}
 --- !u!1 &875064678
 GameObject:
   m_ObjectHideFlags: 0
