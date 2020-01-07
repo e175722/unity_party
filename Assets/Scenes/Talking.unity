@@ -165,6 +165,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed2103dffb2204138b6cd3db4d9baec3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  photonView: {fileID: 0}
 --- !u!114 &74399217
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -370,9 +371,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78867a822b8fa4b79b3ac1d6008b98f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Answer: {fileID: 0}
-  playerObj: {fileID: 5811016708383717232, guid: 0ba07ff0f6ef547be8d966e6410ff46d,
-    type: 3}
 --- !u!1 &1376447346
 GameObject:
   m_ObjectHideFlags: 0
