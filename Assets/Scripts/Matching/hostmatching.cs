@@ -8,6 +8,8 @@ using System.Collections;
 public class hostmatching : MonoBehaviourPunCallbacks
 {    
     public static int playerID;
+    public static int playerCount;
+    
     private void Start() {
         // PhotonServerSettingsに設定した内容を使ってマスターサーバーへ接続する
         PhotonNetwork.ConnectUsingSettings();
@@ -35,4 +37,15 @@ public class hostmatching : MonoBehaviourPunCallbacks
         playerID = PhotonNetwork.LocalPlayer.ActorNumber;
         Debug.Log("playerID = " + playerID); 
     }
+    
+    public override void OnCreateRoomFailed(short returnCode, string message){
+        PhotonNetwork.Disconnect();
+        Application.LoadLevel("HostMaking");   
+    }
+    
+    void Update(){
+        playerCount = PhotonNetwork.CurrentRoom.PlayerCount;
+        Debug.Log("部屋の人数  : " + playerCount);
+    }
+    
 }
