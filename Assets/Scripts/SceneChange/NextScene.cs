@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
+using System.Threading.Tasks;
+using System;
 
-public class NextScene : MonoBehaviour
+public class NextScene : MonoBehaviourPunCallbacks
 {
     
     
@@ -16,10 +18,9 @@ public class NextScene : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
     }
     
-     public void  Next(string resultMessage){
+     public async void  Next(string resultMessage){
         if (Application.loadedLevelName == "HostMaking") {
             Application.LoadLevel ("Matching");
         }else if(Application.loadedLevelName == "GuestEnter") {
@@ -32,7 +33,9 @@ public class NextScene : MonoBehaviour
         }else if(Application.loadedLevelName == "Talking") {
             Application.LoadLevel ("Voting");
         }else if(Application.loadedLevelName == "Voting") {
-            Application.LoadLevel ("Answer");
+            //WaitForSeconds(5);
+            await Task.Delay(2000);
+            Application.LoadLevel ("Wait");
         }else if(Application.loadedLevelName == "Answer") {
             Application.LoadLevel ("Question");
         }

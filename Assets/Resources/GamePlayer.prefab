@@ -613,3 +613,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   obj: {fileID: 8464233573883833777}
   voteStr: 
+  photonIns: {fileID: 5811016708383717232}

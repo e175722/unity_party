@@ -164,7 +164,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed2103dffb2204138b6cd3db4d9baec3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  photonView: {fileID: 0}
 --- !u!114 &324150945
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -667,6 +666,7 @@ GameObject:
   - component: {fileID: 2065948520}
   - component: {fileID: 2065948521}
   - component: {fileID: 2065948524}
+  - component: {fileID: 2065948525}
   m_Layer: 5
   m_Name: Button (1)
   m_TagString: Untagged
@@ -691,7 +691,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 635, y: -367}
+  m_AnchoredPosition: {x: 400, y: -294}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2065948520
@@ -760,6 +760,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 2065948525}
+        m_MethodName: Next
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2065948522
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -809,3 +820,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   obj: {fileID: 0}
   voteStr: 
+  photonIns: {fileID: 5811016708383717232, guid: 0ba07ff0f6ef547be8d966e6410ff46d,
+    type: 3}
+--- !u!114 &2065948525
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2065948518}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed2103dffb2204138b6cd3db4d9baec3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -5,7 +5,8 @@ using UnityEngine.UI;
 using Photon.Pun;
 using Photon.Realtime;
 using Hashtable = ExitGames.Client.Photon.Hashtable;
-using System;using System.Linq;
+using System;
+using System.Linq;
 
 
 public class vote : MonoBehaviourPunCallbacks
@@ -14,48 +15,41 @@ public class vote : MonoBehaviourPunCallbacks
   public GameObject obj;
   public static int voteNum = 0;　//自分が投票する番号
   public static int voteSum = 0;  //投票した回数
-  private int[] counter = new int[4]{0,0,0,0};
+  public static int[] counter = new int[4]{0,0,0,0};
   public string voteStr = "";
   List<string> item = new List<string>();
+  public static string result = "";
+  public GameObject photonIns;
 
   private static Hashtable roomHash = new Hashtable();
   private static Hashtable voteHash = new Hashtable();
 
   void Start()
   {
-
+    voteNum = 0;　
+    voteSum = 0;  
+    counter = new int[4]{0,0,0,0};
   }
 
   public override void OnRoomPropertiesUpdate(Hashtable propertiesThatChanged) {
     if (propertiesThatChanged.TryGetValue("voteNum", out object voteNumObj)) {
-      Debug.Log("voteNumの値"  + (int)voteNumObj);
       int num = (int)voteNumObj;
-      Debug.Log("numの値");
-      Debug.Log(num);
       counter[num] = counter[num] + 1;
-      Debug.Log(counter[0]);
-      Debug.Log(counter[1]);
-      Debug.Log(counter[2]);
-      Debug.Log(counter[3]);
       int intMax = counter.Max();
+      Debug.Log(intMax);
       int index2 = 0;
       for (int i = 0; i < counter.Length; i++){
-        Debug.Log("要素");
-        Debug.Log(counter[i]);
         if (counter[i] == intMax){
-          Debug.Log("院でx†うくす");
-          Debug.Log(i);
           index2 = i;
         }
-      }
-      Debug.Log("最大値 : " + intMax);
-      Debug.Log("最大値のインデックス : " + index2);
-      Debug.Log(PlayerMgr.ansArray[index2]);
+      }    
+      Debug.Log(intMax);   
+      result = PlayerMgr.ansArray[index2];
     }
     if(propertiesThatChanged.TryGetValue("voteSum", out object voteSumObj)) {
       Debug.Log("voteSumの値"  + (int)voteSumObj);
       voteSum = (int)voteSumObj;
-      if(voteSum == hostmatching.playerCount){
+      if(voteSum == PhotonNetwork.CurrentRoom.PlayerCount){
         Application.LoadLevel("Answer");
       }
     }
@@ -99,13 +93,13 @@ public class vote : MonoBehaviourPunCallbacks
   public void decide(){
     Debug.Log("決定ボタンが押されました" + voteNum);
     roomHash["voteNum"] = voteNum;
+    voteSum = voteSum + 1;
+    roomHash["voteSum"] = voteSum;
     PhotonNetwork.CurrentRoom.SetCustomProperties(roomHash);
 
-    voteSum = voteSum + 1;
-    voteHash["voteSum"] = voteSum;
-    PhotonNetwork.CurrentRoom.SetCustomProperties(voteHash);
-
-
+    //voteSum = voteSum + 1;
+    //voteHash["voteSum"] = voteSum;
+    //PhotonNetwork.CurrentRoom.SetCustomProperties(voteHash);
   }
 
 

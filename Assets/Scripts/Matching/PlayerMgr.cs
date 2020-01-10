@@ -9,6 +9,7 @@ public class PlayerMgr : MonoBehaviour, Photon.Pun.IPunObservable
 {
 
     public Text PlayerName;
+    public static string PlayerString;
     public GameObject nameTextObj;
     public GameObject AnsTextObj;
     public GameObject playerObj;
@@ -30,6 +31,7 @@ public class PlayerMgr : MonoBehaviour, Photon.Pun.IPunObservable
 
         //photonViewオーナーの名前をテキスト表示
         PlayerName.text = photonView.Owner.NickName;
+        PlayerString = PlayerName.text;
 
         //プレイヤーネームのtext位置を決定(入ってきた順に羅列されるように)
         PlayerName.transform.position = new Vector3(Ppos.x, Ppos.y - (photonView.Owner.ActorNumber)*50, Ppos.z );

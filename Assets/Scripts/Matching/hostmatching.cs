@@ -44,8 +44,7 @@ public class hostmatching : MonoBehaviourPunCallbacks
     }
     
     void Update(){
-        playerCount = PhotonNetwork.CurrentRoom.PlayerCount;
-        Debug.Log("部屋の人数  : " + playerCount);
+        //playerCount = PhotonNetwork.CurrentRoom.PlayerCount;
     }
     
 }
