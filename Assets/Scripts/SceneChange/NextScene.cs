@@ -7,19 +7,19 @@ using System;
 
 public class NextScene : MonoBehaviourPunCallbacks
 {
-    
-    
+
+
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
     }
-    
+
      public async void  Next(string resultMessage){
         if (Application.loadedLevelName == "HostMaking") {
             Application.LoadLevel ("Matching");
@@ -34,7 +34,7 @@ public class NextScene : MonoBehaviourPunCallbacks
             Application.LoadLevel ("Voting");
         }else if(Application.loadedLevelName == "Voting") {
             //WaitForSeconds(5);
-            await Task.Delay(2000);
+            //await Task.Delay(2000);
             Application.LoadLevel ("Wait");
         }else if(Application.loadedLevelName == "Answer") {
             Application.LoadLevel ("Question");
@@ -42,4 +42,3 @@ public class NextScene : MonoBehaviourPunCallbacks
     }
 
 }
-

@@ -485,7 +485,8 @@ GameObject:
   - component: {fileID: 9135565398145915998}
   - component: {fileID: 8756161041639850862}
   - component: {fileID: 9014787845714768537}
-  - component: {fileID: 6925630295898802790}
+  - component: {fileID: 7437971868076375226}
+  - component: {fileID: 8314317446234890931}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -588,7 +589,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6925630295898802790}
+      - m_Target: {fileID: 8314317446234890931}
         m_MethodName: OnClick
         m_Mode: 1
         m_Arguments:
@@ -599,7 +600,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &6925630295898802790
+--- !u!114 &7437971868076375226
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -608,9 +609,29 @@ MonoBehaviour:
   m_GameObject: {fileID: 8464233573883833777}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2821db1403781463fa40577b86da600d, type: 3}
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 0
+  OwnershipTransfer: 0
+  ObservedComponents:
+  - {fileID: 0}
+  viewIdField: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
+--- !u!114 &8314317446234890931
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8464233573883833777}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fcd92b41dbe342f292d9a3d269a35b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   obj: {fileID: 8464233573883833777}
-  voteStr: 
-  photonIns: {fileID: 5811016708383717232}

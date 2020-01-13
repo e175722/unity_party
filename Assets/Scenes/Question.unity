@@ -675,7 +675,7 @@ GameObject:
   - component: {fileID: 1298220935}
   - component: {fileID: 1298220934}
   m_Layer: 5
-  m_Name: Test
+  m_Name: QuesText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -731,7 +731,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u30C6\u30B9\u30C8\u3067\u3059\u3002\u5909\u308F\u308A\u307E\u3059"
+  m_Text: '------'
 --- !u!222 &1298220935
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1099,7 +1099,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inputField: {fileID: 301141657}
-  testText: {fileID: 1298220934}
+  QuesText: {fileID: 1298220934}
 --- !u!114 &1968056630
 MonoBehaviour:
   m_ObjectHideFlags: 0

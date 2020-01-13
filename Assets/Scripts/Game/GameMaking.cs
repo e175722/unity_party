@@ -6,22 +6,21 @@ using UnityEngine.UI;
 public class GameMaking : MonoBehaviour
 {
     public InputField inputField;
-    public Text testText;
-    public Text voteText;
+    public Text QuesText;
     //各々の意見変数
     public static string idea;
 
 
     void Start()
     {
-
+        //初期化
+        idea = "入力されていません。";
     }
 
     public void InputText(){
     //テキストにinputFieldの内容を反映
         idea = inputField.text;
-        testText.text = idea;
-        //Debug.Log(idea);
+        QuesText.text = idea;
      }
 
     //ゲッター

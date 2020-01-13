@@ -39,7 +39,7 @@ public class PlayerMgr : MonoBehaviour, Photon.Pun.IPunObservable
         buttonObj.transform.position = new Vector3(Ppos.x, Ppos3.y + 500 - (photonView.Owner.ActorNumber)*50, Ppos3.z );
 
         sign = Convert.ToString(photonView.Owner.ActorNumber);
-        
+
         //ネットワークオブジェクトを消去しない設定
         DontDestroyOnLoad(this);
     }
@@ -78,32 +78,34 @@ public class PlayerMgr : MonoBehaviour, Photon.Pun.IPunObservable
                 ansArray[photonView.Owner.ActorNumber-1] = GameMaking.getIdea();
           }
         }
-        
+
         //完了ボタンを押したならtrueを更新
         isDone_PlayerMgr = ButtonMgr.isDone;
-        
+
     }
 
+    //オブジェクトの変更があり次第動く。
+    //注意:送信と受信の順番が同じでないと、適切に送信されません。
     void IPunObservable.OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info) {
         if (stream.IsWriting) {
-            // 自身側が生成したオブジェクトの場合は
-            // 色相値と移動中フラグのデータを送信する
-            stream.SendNext(Answer.text);
-            stream.SendNext(isDone_PlayerMgr);
-            stream.SendNext(buttonObj.transform.Find("Text").GetComponent<Text>().text);
-            stream.SendNext(sign);
+            // 自身側が生成したオブジェクトの場合は送信
+            stream.SendNext(Answer.text);　//自身の答えを送信(1)
+            stream.SendNext(isDone_PlayerMgr); //完了を押したかどうか送信(2)
+
+            stream.SendNext(buttonObj.transform.Find("Text").GetComponent<Text>().text); //ボタンのtextを送信(3)
+            stream.SendNext(sign); //プレイヤーID+自身の答えを送信(4)
             ButtonMgr.isDone = false;
         }else {
-            // 他プレイヤー側が生成したオブジェクトの場合は
-            // 受信したデータから色相値と移動中フラグを更新する
-            Answer.text = Convert.ToString(stream.ReceiveNext());
-            isDone_PlayerMgr = Convert.ToBoolean(stream.ReceiveNext());
-            
-            string value = Convert.ToString(stream.ReceiveNext());
+            // 他プレイヤー側が生成したオブジェクトの場合を受信
+            Answer.text = Convert.ToString(stream.ReceiveNext()); //受信(1)
+            isDone_PlayerMgr = Convert.ToBoolean(stream.ReceiveNext()); //受信(2)
+
+            string value = Convert.ToString(stream.ReceiveNext()); //受信(3)
             buttonObj.transform.Find("Text").GetComponent<Text>().text = value;
-            string temp = Convert.ToString(stream.ReceiveNext());
+            string temp = Convert.ToString(stream.ReceiveNext()); //受信(4)
             ansArray[Convert.ToInt32(temp.Substring(0,1))-1] = temp.Substring(1,temp.Length-1);
 
+            //ルーム作成者が完了ボタンを押したら画面遷移
             if(isDone_PlayerMgr == true){
                 if(Application.loadedLevelName == "Matching" || Application.loadedLevelName == "Answer"){
                     Application.LoadLevel ("Question");
