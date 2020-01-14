@@ -27,7 +27,8 @@ public class ToMain : MonoBehaviour
             Application.LoadLevel("Main");
         }else if(Application.loadedLevelName == "Answer"){
             Application.LoadLevel("Main");
-            PhotonNetwork.LeaveRoom ();
+            PhotonNetwork.LeaveRoom (); //部屋を出る
+            PhotonNetwork.Disconnect(); //photonとの接続を切る
         }
 	}
 }
