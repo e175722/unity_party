@@ -126,7 +126,7 @@ GameObject:
   - component: {fileID: 61517294}
   - component: {fileID: 61517297}
   m_Layer: 5
-  m_Name: InputField
+  m_Name: InputField_InputName
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -146,7 +146,7 @@ RectTransform:
   - {fileID: 506088580}
   - {fileID: 690678584}
   m_Father: {fileID: 1307193366}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -271,8 +271,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 838e4f403e8ee442a93b405e0f6c6cdf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputField: {fileID: 61517294}
-  text: {fileID: 2012732860}
+  CheckText: {fileID: 2012732860}
 --- !u!1 &285234416
 GameObject:
   m_ObjectHideFlags: 0
@@ -287,7 +286,7 @@ GameObject:
   - component: {fileID: 285234418}
   - component: {fileID: 285234421}
   m_Layer: 5
-  m_Name: Button
+  m_Name: Button_InitNameDecide
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -306,7 +305,7 @@ RectTransform:
   m_Children:
   - {fileID: 1551715777}
   m_Father: {fileID: 1307193366}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -354,7 +353,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 285234421}
-        m_MethodName: GetName
+        m_MethodName: ChangeCheck
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -408,10 +407,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 285234416}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a52aaa998f8f401990c4e4c038119a4, type: 3}
+  m_Script: {fileID: 11500000, guid: f63bc6fa61dd54edf929eb38b24f00f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: {fileID: 0}
 --- !u!1 &480382603
 GameObject:
   m_ObjectHideFlags: 0
@@ -424,7 +422,7 @@ GameObject:
   - component: {fileID: 480382606}
   - component: {fileID: 480382605}
   m_Layer: 5
-  m_Name: Text
+  m_Name: Text_SceneTitle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -442,7 +440,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1307193366}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -657,7 +655,7 @@ GameObject:
   - component: {fileID: 880464368}
   - component: {fileID: 880464367}
   m_Layer: 5
-  m_Name: Button (2)
+  m_Name: Button_BackToStart
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -676,7 +674,7 @@ RectTransform:
   m_Children:
   - {fileID: 1552699436}
   m_Father: {fileID: 1307193366}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -692,7 +690,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 880464365}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 899bec90b411743aa943406abba59112, type: 3}
+  m_Script: {fileID: 11500000, guid: ed2103dffb2204138b6cd3db4d9baec3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &880464368
@@ -736,8 +734,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 880464367}
-        m_MethodName: Back
-        m_Mode: 1
+        m_MethodName: SignUp_To_Start
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -794,9 +792,8 @@ GameObject:
   - component: {fileID: 1110560666}
   - component: {fileID: 1110560665}
   - component: {fileID: 1110560664}
-  - component: {fileID: 1110560668}
   m_Layer: 5
-  m_Name: Button (1)
+  m_Name: Button_ToMain
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -815,7 +812,7 @@ RectTransform:
   m_Children:
   - {fileID: 1282033898}
   m_Father: {fileID: 1307193366}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -831,7 +828,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1110560662}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fba86e21195c74b12b0b668e56978530, type: 3}
+  m_Script: {fileID: 11500000, guid: ed2103dffb2204138b6cd3db4d9baec3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &1110560665
@@ -874,9 +871,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1110560668}
-        m_MethodName: NextScene
-        m_Mode: 1
+      - m_Target: {fileID: 1110560664}
+        m_MethodName: SignUp_To_Main
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -920,18 +917,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1110560662}
   m_CullTransparentMesh: 0
---- !u!114 &1110560668
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1110560662}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e0702e80979c0432bb7cca5d686b0f46, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1184536668
 GameObject:
   m_ObjectHideFlags: 0
@@ -1165,12 +1150,12 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
+  - {fileID: 880464366}
   - {fileID: 285234417}
   - {fileID: 1110560663}
-  - {fileID: 880464366}
   - {fileID: 1786384463}
-  - {fileID: 480382604}
   - {fileID: 61517293}
+  - {fileID: 480382604}
   - {fileID: 2012732859}
   m_Father: {fileID: 0}
   m_RootOrder: 2
@@ -1507,7 +1492,7 @@ GameObject:
   - component: {fileID: 1786384465}
   - component: {fileID: 1786384464}
   m_Layer: 5
-  m_Name: Button (4)
+  m_Name: Button_DeleteName
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1545,7 +1530,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a52aaa998f8f401990c4e4c038119a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: {fileID: 0}
 --- !u!114 &1786384465
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1644,7 +1628,7 @@ GameObject:
   - component: {fileID: 2012732861}
   - component: {fileID: 2012732860}
   m_Layer: 5
-  m_Name: Text (1)
+  m_Name: Text_CheckName
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -1,52 +1,33 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+
+/*
+GamePlayerプレハブのButtonにアタッチされている
+*/
 public class ClickVote : MonoBehaviour
 {
-    public GameObject obj;
+  public GameObject obj; //投票ボタンオブジェクトを入れる変数
 
-    // Start is called before the first frame update
-    void Start()
-    {
+  void Start()
+  {
+  }
 
+  void Update()
+  {
+  }
+
+  //投票ボタンが押された時
+  public void OnClick (){
+    string text = this.obj.transform.Find("Text").GetComponent<Text>().text; //投票ボタンの持っているテキストを取得
+    int number = 0; //number初期化。これに選んだ選択肢のindexを入れる
+    for (int i = 0; i < PlayerMgr.ansArray.Length; i++){ //全員の回答が入っているansArray配列の一つ一つと比較して、押されたボタンを判定させる。
+      if (PlayerMgr.ansArray[i] == text){
+        number = i;
+      }
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
-    //投票ボタンが押された時
-    public void OnClick (){
-        string text = this.obj.transform.Find("Text").GetComponent<Text>().text;
-        int number = 0;
-        for (int i = 0; i < PlayerMgr.ansArray.Length; i++){
-            if (PlayerMgr.ansArray[i] == text){
-                number = i;
-            }
-        }
-        switch (number) {
-            case 0:
-            Debug.Log("0番が押されました");
-            vote.voteNum = 0;
-            break;
-            case 1:
-            Debug.Log("1番が押されました");
-            vote.voteNum = 1;
-            break;
-            case 2:
-            Debug.Log("2番が押されました");
-            vote.voteNum = 2;
-            break;
-            case 3:
-            Debug.Log("3番が押されました");
-            vote.voteNum = 3;
-            break;
-            default:
-            break;
-        }
-    }
+    vote.voteNum = number; //vote.voteNumが実際に同期とられる変数
+  }
 }

@@ -1,50 +1,32 @@
-﻿using Photon.Pun;
+using Photon.Pun;
 using Photon.Realtime;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 
+
+/*
+HostMakingシーンのhostmatching_managerにアタッチされている
+*/
+
 // MonoBehaviourではなくMonoBehaviourPunCallbacksを継承して、Photonのコールバックを受け取れるようにする
 public class hostmatching : MonoBehaviourPunCallbacks
-{    
-    public static int playerID;
-    public static int playerCount;
-    
-    private void Start() {
-        // PhotonServerSettingsに設定した内容を使ってマスターサーバーへ接続する
-        PhotonNetwork.ConnectUsingSettings();
-    }
+{
+  public static int playerID;  //使ってるかも
+  public static int playerCount;  //??
 
-    // マスターサーバーへの接続が成功した時に呼ばれるコールバック
-    public override void OnConnectedToMaster() {
-        // ルーム作成者が作成したルームIDを取得
-        string ID = InputManager.getRoomID();
-        
-        // ルームの作成者かそうでないかの判定
-        if(InputManager.getIsguest() == true){
-            //ルームに参加する
-            PhotonNetwork.JoinRoom(ID);
-        }else{
-            //ルームを作成する
-            PhotonNetwork.CreateRoom(ID, new RoomOptions(), TypedLobby.Default);
-        }
-    }
+  private void Start() {
+    // PhotonServerSettingsに設定した内容を使ってマスターサーバーへ接続する
 
-    // マッチングが成功した時に呼ばれるコールバック
-    public override void OnJoinedRoom() {
-        var v = new Vector3(Random.Range(-3f, 3f), Random.Range(-3f, 3f));
-        PhotonNetwork.Instantiate("GamePlayer", v, Quaternion.identity); 
-        playerID = PhotonNetwork.LocalPlayer.ActorNumber;
-        Debug.Log("playerID = " + playerID); 
-    }
-    
-    public override void OnCreateRoomFailed(short returnCode, string message){
-        PhotonNetwork.Disconnect();
-        Application.LoadLevel("HostMaking");   
-    }
-    
-    void Update(){
-        //playerCount = PhotonNetwork.CurrentRoom.PlayerCount;
-    }
-    
+    var v = new Vector3(Random.Range(-3f, 3f), Random.Range(-3f, 3f));  //必要だけど・・・
+    PhotonNetwork.Instantiate("GamePlayer", v, Quaternion.identity);  //ユーザーのインスタンスを作成
+    playerID = PhotonNetwork.LocalPlayer.ActorNumber;  //使ってるかも
+    Debug.Log("playerID = " + playerID);
+  }
+
+
+  void Update(){
+    //playerCount = PhotonNetwork.CurrentRoom.PlayerCount;
+  }
+
 }

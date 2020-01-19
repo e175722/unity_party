@@ -204,7 +204,7 @@ GameObject:
   - component: {fileID: 711917250}
   - component: {fileID: 711917246}
   m_Layer: 5
-  m_Name: Button
+  m_Name: Button_NextQuestion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -223,7 +223,7 @@ RectTransform:
   m_Children:
   - {fileID: 1604568467}
   m_Father: {fileID: 2056533321}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -283,7 +283,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 711917246}
-        m_MethodName: Next
+        m_MethodName: Answer_To_Question
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -513,7 +513,7 @@ GameObject:
   - component: {fileID: 1177424081}
   - component: {fileID: 1177424080}
   m_Layer: 5
-  m_Name: AnswerText
+  m_Name: Text_Answer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -605,7 +605,7 @@ GameObject:
   - component: {fileID: 1464629073}
   - component: {fileID: 1464629072}
   m_Layer: 5
-  m_Name: Button (1)
+  m_Name: Button_BackToMain
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -624,7 +624,7 @@ RectTransform:
   m_Children:
   - {fileID: 602106209}
   m_Father: {fileID: 2056533321}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -640,7 +640,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1464629070}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e0702e80979c0432bb7cca5d686b0f46, type: 3}
+  m_Script: {fileID: 11500000, guid: ed2103dffb2204138b6cd3db4d9baec3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &1464629073
@@ -684,8 +684,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1464629072}
-        m_MethodName: NextScene
-        m_Mode: 1
+        m_MethodName: Answer_To_Main
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -819,7 +819,7 @@ GameObject:
   - component: {fileID: 1691968307}
   - component: {fileID: 1691968306}
   m_Layer: 5
-  m_Name: Text
+  m_Name: Text_Question
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -987,8 +987,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
-  - {fileID: 711917245}
   - {fileID: 1464629071}
+  - {fileID: 711917245}
   - {fileID: 1691968305}
   - {fileID: 1177424079}
   m_Father: {fileID: 0}

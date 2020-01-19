@@ -346,7 +346,7 @@ GameObject:
   - component: {fileID: 620816125}
   - component: {fileID: 620816124}
   m_Layer: 5
-  m_Name: Button (1)
+  m_Name: Button_ToRoom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -381,7 +381,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 620816122}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 474a936f9e10641a1bae2af6022cd76e, type: 3}
+  m_Script: {fileID: 11500000, guid: ed2103dffb2204138b6cd3db4d9baec3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &620816125
@@ -425,8 +425,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 620816124}
-        m_MethodName: NextScene
-        m_Mode: 1
+        m_MethodName: Main_To_Room
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -584,7 +584,7 @@ GameObject:
   - component: {fileID: 1001006802}
   - component: {fileID: 1001006801}
   m_Layer: 5
-  m_Name: Text (1)
+  m_Name: Text_SceneTitle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -663,7 +663,7 @@ GameObject:
   - component: {fileID: 1205494278}
   - component: {fileID: 1205494277}
   m_Layer: 5
-  m_Name: Button
+  m_Name: Button_ToSetting
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -698,7 +698,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1205494275}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 952a95e3ae53743a5817b5e74aa83668, type: 3}
+  m_Script: {fileID: 11500000, guid: ed2103dffb2204138b6cd3db4d9baec3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &1205494278
@@ -742,8 +742,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1205494277}
-        m_MethodName: NextScene
-        m_Mode: 1
+        m_MethodName: Main_To_Setting
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -800,7 +800,7 @@ GameObject:
   - component: {fileID: 1389500653}
   - component: {fileID: 1389500652}
   m_Layer: 5
-  m_Name: Text
+  m_Name: Text_UserName
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -837,7 +837,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ebcae62223814f059b8f3c707717605, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetText: {fileID: 0}
 --- !u!114 &1389500653
 MonoBehaviour:
   m_ObjectHideFlags: 0

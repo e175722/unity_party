@@ -208,7 +208,7 @@ GameObject:
   - component: {fileID: 46353288}
   - component: {fileID: 46353287}
   m_Layer: 5
-  m_Name: Button
+  m_Name: Button_MakeRoom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -227,7 +227,7 @@ RectTransform:
   m_Children:
   - {fileID: 2049048927}
   m_Father: {fileID: 115806093}
-  m_RootOrder: 3
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -422,11 +422,11 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
-  - {fileID: 441052727}
-  - {fileID: 181301899}
-  - {fileID: 1009539440}
-  - {fileID: 46353286}
   - {fileID: 964304144}
+  - {fileID: 46353286}
+  - {fileID: 181301899}
+  - {fileID: 441052727}
+  - {fileID: 1009539440}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -449,7 +449,7 @@ GameObject:
   - component: {fileID: 181301901}
   - component: {fileID: 181301900}
   m_Layer: 5
-  m_Name: InputField
+  m_Name: InputField_InputRoomID
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -469,7 +469,7 @@ RectTransform:
   - {fileID: 1780104998}
   - {fileID: 1924102447}
   m_Father: {fileID: 115806093}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -488,8 +488,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5dc5373922d2f49ffa6f54c1ff1f2c45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputField: {fileID: 181301901}
-  text: {fileID: 1009539441}
+  Checktext: {fileID: 1009539441}
 --- !u!114 &181301901
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -619,7 +618,7 @@ GameObject:
   - component: {fileID: 441052729}
   - component: {fileID: 441052728}
   m_Layer: 5
-  m_Name: Text
+  m_Name: Text_SeneTitle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -637,7 +636,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 115806093}
-  m_RootOrder: 0
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -698,7 +697,7 @@ GameObject:
   - component: {fileID: 964304146}
   - component: {fileID: 964304145}
   m_Layer: 5
-  m_Name: BackButton
+  m_Name: Button_BackToRoom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -717,7 +716,7 @@ RectTransform:
   m_Children:
   - {fileID: 1970851943}
   m_Father: {fileID: 115806093}
-  m_RootOrder: 4
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -733,7 +732,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 964304143}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 899bec90b411743aa943406abba59112, type: 3}
+  m_Script: {fileID: 11500000, guid: ed2103dffb2204138b6cd3db4d9baec3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &964304146
@@ -777,8 +776,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 964304145}
-        m_MethodName: Back
-        m_Mode: 1
+        m_MethodName: HostMaking_To_Private
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -900,7 +899,7 @@ GameObject:
   - component: {fileID: 1009539442}
   - component: {fileID: 1009539441}
   m_Layer: 5
-  m_Name: Text (1)
+  m_Name: Text_CheckRoomID
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -918,7 +917,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 115806093}
-  m_RootOrder: 2
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}

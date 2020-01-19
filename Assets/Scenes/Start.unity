@@ -272,7 +272,7 @@ GameObject:
   - component: {fileID: 571933264}
   - component: {fileID: 571933263}
   m_Layer: 5
-  m_Name: Text (1)
+  m_Name: Push To Start
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -349,7 +349,7 @@ GameObject:
   - component: {fileID: 1050137316}
   - component: {fileID: 1050137315}
   m_Layer: 5
-  m_Name: Text
+  m_Name: Title
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
