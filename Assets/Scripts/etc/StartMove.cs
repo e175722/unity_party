@@ -18,7 +18,7 @@ public class StartMove : MonoBehaviour {
   // Update is called once per frame
   void Update () {
     bool resString = PlayerPrefs.HasKey("SetName");
-    if (Input.GetKey(KeyCode.Space)) {  //SpaceKeyを押したら
+    if (Input.GetMouseButton(0)) {  //画面をタッチしたら
       if (resString) //すでに名前が登録されてるかどうか。
       {
         SceneManager.LoadScene("Main");

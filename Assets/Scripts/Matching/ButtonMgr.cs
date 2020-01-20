@@ -6,9 +6,9 @@ using Photon.Pun;
 
 
 /*
-・MatchingシーンのButton_ToQuestion
-・TalkingシーンのButton_ToVoting
-・AnswerシーンのButton_NextQuestion
+・MatchingシーンのCanvas,Button_ToQuestion
+・TalkingシーンのCanvas,Button_ToVoting
+・AnswerシーンのCanvas,Button_NextQuestion
 にアタッチされている
 */
 public class ButtonMgr : MonoBehaviour
@@ -19,14 +19,17 @@ public class ButtonMgr : MonoBehaviour
   // Start is called before the first frame update
   void Start()
   {
-    if(InputManager.getIsguest() == true){ //ホスト以外非表示
-      DoneButton.SetActive(false);
-    }
   }
 
   // Update is called once per frame
   void Update()
   {
+      //マスターかどうかで、ボタンオブジェクトをアクティブor非アクティブに
+      if(PhotonNetwork.IsMasterClient == true ){
+          DoneButton.SetActive(true);
+      }else{
+          DoneButton.SetActive(false);
+      }
 
   }
 
