@@ -16,18 +16,27 @@ using System;
 */
 public class CreateQuestion : MonoBehaviourPunCallbacks
 {
+
   public Text text;
-  private static string hiragana = "あいうえおかきくけこさしすせそたちつてとなにねのはひふへほまみむめもらりるれろやゆよわ";
-  private static string[] odai = new string[9] {"有名人", "夏の果物", "冬の果物", "夏の曲", "冬の曲", "今話題の人", "黒歴史","言われて嬉しい言葉","言われたら嫌な言葉"};
+  //private static string hiragana = "あいうえおかきくけこさしすせそたちつてとなにねのはひふへほまみむめもらりるれろやゆよわ";
+  //private static string[] odai = new string[9] {"有名人", "夏の果物", "冬の果物", "夏の曲", "冬の曲", "今話題の人", "黒歴史","言われて嬉しい言葉","言われたら嫌な言葉"};
   private static string sentense;
   private static Hashtable roomHash = new Hashtable();
+
+  public string[] textMessage; //問題を入れる配列
 
   // Start is called before the first frame update
   void Start()
   {
     if (Application.loadedLevelName == "Question") {
       if(PhotonNetwork.IsMasterClient){
-        sentense = "「" + hiragana[UnityEngine.Random.Range(0, 42)] + "」で始まる" + odai[UnityEngine.Random.Range(0, 8)] + "といえば";
+        //sentense = "「" + hiragana[UnityEngine.Random.Range(0, 42)] + "」で始まる" + odai[UnityEngine.Random.Range(0, 8)] + "といえば";
+        TextAsset textasset = new TextAsset(); //テキストファイルのデータを取得するインスタンスを作成
+        textasset = Resources.Load("QestionList", typeof(TextAsset) )as TextAsset; //Resourcesフォルダから対象テキストを取得
+        string TextLines = textasset.text; //テキスト全体をstring型で入れる変数を用意して入れる
+        textMessage = TextLines.Split('\n'); //ここで問題を改行ごとにわける
+        //Debug.Log(textMessage.Length);
+        sentense = textMessage[UnityEngine.Random.Range(0, textMessage.Length)];
         roomHash["sentense"] = sentense;
         PhotonNetwork.CurrentRoom.SetCustomProperties(roomHash);
         //Debug.Log(sentense);
