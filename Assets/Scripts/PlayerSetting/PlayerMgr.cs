@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Photon.Pun;
 using System;
+using System.Linq;
 
 
 /*
@@ -67,8 +68,16 @@ public class PlayerMgr : MonoBehaviour, Photon.Pun.IPunObservable
     }
 
     //ボタンオブジェクトのアクティブ化
-    if (Application.loadedLevelName == "Voting") {
-      buttonObj.SetActive (true);
+    if (Application.loadedLevelName == "Voting"){
+      if(vote.isSecond == true){ //2回目にVotingシーンに入ったかどうか
+        if(vote.counter.Max() == vote.counter[photonView.Owner.ActorNumber-1]){ //自分の回答が最大投票数のものなら表示
+          buttonObj.SetActive (true);
+        }else{
+          buttonObj.SetActive (false);
+        }
+      }else{
+        buttonObj.SetActive (true);
+      }
     }else{
       buttonObj.SetActive (false);
     }

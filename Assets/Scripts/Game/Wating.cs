@@ -16,6 +16,7 @@ public class Wating : MonoBehaviourPunCallbacks
   // Start is called before the first frame update
   void Start()
   {
+      vote.isSecond = true;　//Waitシーンにいる時点でvoingシーンに訪れるのが初めてではないためtrueに
   }
 
   // Update is called once per frame
@@ -49,8 +50,23 @@ public class Wating : MonoBehaviourPunCallbacks
     if(propertiesThatChanged.TryGetValue("voteSum", out object voteSumObj)) {  //voteSumの値を取得。取得したものはvoteSumObjに格納
       Debug.Log("voteSumの値_w : "  + (int)voteSumObj);
       vote.voteSum = (int)voteSumObj;  //voteSumObjをintにキャスト
-      if(vote.voteSum == PhotonNetwork.CurrentRoom.PlayerCount){  //人数分の投票が出揃ったらAnswerシーンに遷移
-        Application.LoadLevel("Answer");
+      if(vote.voteSum >= PhotonNetwork.CurrentRoom.PlayerCount){  //人数分以上の投票が出揃ったらAnswerシーンに遷移
+
+        int voteMaxNum = 0; //最大投票数の数
+
+        for (int i = 0; i < vote.counter.Length; i++){  //最も投票数が多いものの数を計算
+          if (vote.counter[i] == vote.counter.Max()){
+            voteMaxNum = voteMaxNum + 1;
+          }
+        }
+
+        if(voteMaxNum == 1){ //投票最大数が一つの時
+          vote.isSecond = false;
+          Application.LoadLevel("Answer");
+        }else if(voteMaxNum != 1 && PhotonNetwork.IsMasterClient == true){
+          Application.LoadLevel("Voting");
+        }
+
       }
     }
   }

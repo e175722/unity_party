@@ -19,16 +19,23 @@ public class vote : MonoBehaviourPunCallbacks
   public static int voteSum = 0;  //投票した回数
   public static int[] counter = new int[4]{0,0,0,0};//何番に何表投票されたかを入れておく配列
   public static string result = "";//もっとも多い表の回答を入れておくためのstring
-
-
+  public static bool isSecond = false; //初めてVotingシーンに訪れたならfalse
   private static Hashtable roomHash = new Hashtable();//roomHashテーブル。同期を取るために必要。
+  public Text SameVoteText; //最大投票数が複数出た場合に出現する
 
   void Start()
   {
-    //初期化
-    voteNum = 0;　
-    voteSum = 0;
-    counter = new int[4]{0,0,0,0}; //
+    SameVoteText.text　= "";
+    //問題出題されて初めてVotingシーンに訪れたら初期化
+    if(isSecond == false){
+      //初期化
+      voteNum = 0;
+      voteSum = 0;
+      counter = new int[4]{0,0,0,0};
+    }else{
+      SameVoteText.text = "最も投票数の多かった回答が複数あったのであなたが決めましょう！";
+    }
+
   }
 
   //何かしらセットされ次第始動(受信側)
@@ -54,6 +61,7 @@ public class vote : MonoBehaviourPunCallbacks
       for (int i = 0; i < counter.Length; i++){  //このforで表が最も多い回答を探す
         if (counter[i] == intMax){
           index2 = i;
+
         }
       }
       result = PlayerMgr.ansArray[index2];  //最も表を獲得した回答を格納
@@ -62,8 +70,23 @@ public class vote : MonoBehaviourPunCallbacks
     if(propertiesThatChanged.TryGetValue("voteSum", out object voteSumObj)) {  //voteSumの値を取得。取得したものはvoteSumObjに格納
       Debug.Log("voteSumの値_v : "  + (int)voteSumObj);
       voteSum = (int)voteSumObj;  //voteSumObjをintにキャスト
-      if(voteSum == PhotonNetwork.CurrentRoom.PlayerCount){  //人数分の投票が出揃ったらAnswerシーンに遷移
-        Application.LoadLevel("Answer");
+      if(voteSum >= PhotonNetwork.CurrentRoom.PlayerCount){  //人数分以上の投票数が出揃ったら
+
+        int voteMaxNum = 0; //最大投票数の数
+
+        for (int i = 0; i < counter.Length; i++){  //最も投票数が多いものの数を計算
+          if (counter[i] == counter.Max()){
+            voteMaxNum = voteMaxNum + 1;
+          }
+        }
+
+        if(voteMaxNum == 1){ //投票最大数が一つの時
+          isSecond = false;
+          Application.LoadLevel("Answer");
+        }else if(voteMaxNum != 1 && PhotonNetwork.IsMasterClient == true){
+          Application.LoadLevel("Voting");
+        }
+
       }
     }
   }
