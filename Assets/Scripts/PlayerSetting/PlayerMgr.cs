@@ -30,6 +30,11 @@ public class PlayerMgr : MonoBehaviour, Photon.Pun.IPunObservable
   // Start is called before the first frame update
   void Start()
   {
+
+    if (Application.loadedLevelName == "Matching"){
+      isDone_PlayerMgr = false;
+    }
+
     //プレイヤーネームのtext位置を取得
     Vector3 Ppos = PlayerName.transform.position;
     Vector3 Ppos2 = Answer.transform.position;

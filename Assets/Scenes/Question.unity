@@ -831,6 +831,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   text: {fileID: 1387688843}
+  textMessage: []
 --- !u!1 &1561048589
 GameObject:
   m_ObjectHideFlags: 0
@@ -843,9 +844,10 @@ GameObject:
   - component: {fileID: 1561048594}
   - component: {fileID: 1561048593}
   - component: {fileID: 1561048592}
+  - component: {fileID: 1561048595}
   - component: {fileID: 1561048591}
   m_Layer: 5
-  m_Name: Button_ToTalking
+  m_Name: Button_ToWating
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -880,7 +882,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1561048589}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ed2103dffb2204138b6cd3db4d9baec3, type: 3}
+  m_Script: {fileID: 11500000, guid: 9faa0d594c4984c1cab509667de8991e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &1561048592
@@ -924,7 +926,18 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1561048591}
-        m_MethodName: Question_To_Talking
+        m_MethodName: Done_Q
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1561048595}
+        m_MethodName: Question_To_WaitQ
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -969,6 +982,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1561048589}
   m_CullTransparentMesh: 0
+--- !u!114 &1561048595
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1561048589}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed2103dffb2204138b6cd3db4d9baec3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1774855023
 GameObject:
   m_ObjectHideFlags: 0

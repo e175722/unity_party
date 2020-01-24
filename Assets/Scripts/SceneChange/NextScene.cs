@@ -182,9 +182,11 @@ public class NextScene : MonoBehaviourPunCallbacks
     }
   }
   //Questionから他への遷移
-  public void  Question_To_Talking(string resultMessage){
+  public void  Question_To_WaitQ(string resultMessage){
     if(Application.loadedLevelName == "Question") {
-      Application.LoadLevel ("Talking");
+      //Application.LoadLevel ("Talking");
+        Application.LoadLevel ("Wait_Q");
+
     }
   }
   //Talkingから他への遷移

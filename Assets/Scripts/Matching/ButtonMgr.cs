@@ -19,6 +19,9 @@ public class ButtonMgr : MonoBehaviour
   // Start is called before the first frame update
   void Start()
   {
+    if (Application.loadedLevelName == "Matching"){
+      isDone = false;
+    }
   }
 
   // Update is called once per frame
