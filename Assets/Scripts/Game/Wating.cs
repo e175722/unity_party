@@ -94,7 +94,7 @@ public class Wating : MonoBehaviourPunCallbacks
     }
   }
 
-  //Votingシーンで誰かが抜けたら、今のvoteSumの値を送信
+  //Waitシーンにいるのかどうかを送信しようかな
   public override void OnPlayerLeftRoom(Photon.Realtime.Player player){
     vote.CountNum = 0;
     vote.WaitNowNum = 0;

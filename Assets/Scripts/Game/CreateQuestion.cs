@@ -56,6 +56,7 @@ public class CreateQuestion : MonoBehaviourPunCallbacks
     if (propertiesThatChanged.TryGetValue ("sentense", out object sentenseObj)) {
       string test = Convert.ToString(sentenseObj);
       text.text = test;
+      sentense = test;
     }
   }
 
