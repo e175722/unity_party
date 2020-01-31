@@ -101,6 +101,10 @@ public class vote : MonoBehaviourPunCallbacks
     PhotonNetwork.CurrentRoom.SetCustomProperties(roomHash);//この行で送信
   }
 
+  public int getVoteNum(){
+    return voteNum;
+  }
+
 
   // Update is called once per frame
   void Update()

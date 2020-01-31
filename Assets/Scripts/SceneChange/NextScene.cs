@@ -158,14 +158,20 @@ public class NextScene : MonoBehaviourPunCallbacks
   //Answerから他への遷移
   public void  Answer_To_Question(string resultMessage){
     if(Application.loadedLevelName == "Answer") {
-      Application.LoadLevel ("Question");
+      //Application.LoadLevel ("Question");
+      ButtonMgr.isPopupFlag = true;
+      GameObject obj = (GameObject)Resources.Load ("Popup_Check(OKCancelButton)");
+       GameObject test = Instantiate(obj, new Vector3(0.0f,0.0f,0.0f), Quaternion.identity);
     }
   }
   public void  Answer_To_Main(string resultMessage){
     if(Application.loadedLevelName == "Answer") {
-      PhotonNetwork.LeaveRoom();
-      PhotonNetwork.Disconnect();
-      Application.LoadLevel ("Main");
+      //PhotonNetwork.LeaveRoom();
+      //PhotonNetwork.Disconnect();
+      //Application.LoadLevel ("Main");
+      ButtonMgr.isPopupFlag = false;
+      GameObject obj = (GameObject)Resources.Load ("Popup_Check(OKCancelButton)");
+       GameObject test = Instantiate(obj, new Vector3(0.0f,0.0f,0.0f), Quaternion.identity);
     }
   }
 
@@ -184,8 +190,10 @@ public class NextScene : MonoBehaviourPunCallbacks
   //Questionから他への遷移
   public void  Question_To_WaitQ(string resultMessage){
     if(Application.loadedLevelName == "Question") {
+      GameObject obj = (GameObject)Resources.Load ("Popup_Check(OKCancelButton)");
+       GameObject test = Instantiate(obj, new Vector3(0.0f,0.0f,0.0f), Quaternion.identity);
       //Application.LoadLevel ("Talking");
-        Application.LoadLevel ("Wait_Q");
+      //Application.LoadLevel ("Wait_Q");
 
     }
   }
@@ -198,7 +206,9 @@ public class NextScene : MonoBehaviourPunCallbacks
   //Votingから他への遷移
   public void  Voting_To_Wait(string resultMessage){
     if(Application.loadedLevelName == "Voting") {
-      Application.LoadLevel ("Wait");
+      GameObject obj = (GameObject)Resources.Load ("Popup_Check(OKCancelButton)");
+       GameObject test = Instantiate(obj, new Vector3(0.0f,0.0f,0.0f), Quaternion.identity);
+      //Application.LoadLevel ("Wait");
     }
   }
 }

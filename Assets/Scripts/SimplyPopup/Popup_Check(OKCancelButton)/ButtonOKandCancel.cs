@@ -2,14 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+using Photon.Pun;
 
 public class ButtonOKandCancel : MonoBehaviour
 {
   public float timeOut = 0.1f;
   private float timeElapsed;
   //public InputField InputChangeName;
-  GameObject objGet;
+  InputField objGet;
   // Start is called before the first frame update
   void Start()
   {
@@ -32,8 +32,9 @@ public class ButtonOKandCancel : MonoBehaviour
   public void OKButton()
   {
     if (Application.loadedLevelName == "ChangeName" || Application.loadedLevelName == "Sign Up" ){
-      objGet = GameObject.Find("InputField_InputName");
-      name = objGet.transform.GetChild(2).gameObject.GetComponent<Text>().text;
+      objGet = GameObject.Find("InputField_InputName").GetComponent<InputField>();
+      //name = objGet.transform.GetChild(2).gameObject.GetComponent<Text>().text;
+      string name = objGet.text;
       PlayerPrefs.DeleteKey("SetName");
       PlayerPrefs.SetString("SetName", name);
       PlayerPrefs.Save();
@@ -43,9 +44,31 @@ public class ButtonOKandCancel : MonoBehaviour
       Debug.Log("変更後 " + name);
     }
     else if(Application.loadedLevelName == "Matching"){
-      objGet = GameObject.Find("Button_ToQuestion");
-      objGet.GetComponent<ButtonMgr>().isDoneChange( );
+      GameObject objGet2 = GameObject.Find("Button_ToQuestion");
+      objGet2.GetComponent<ButtonMgr>().isDoneChange( );
       Application.LoadLevel("Question");
+    }
+    else if(Application.loadedLevelName == "Question"){
+      GameObject objGet2 = GameObject.Find("Button_ToWating");
+      objGet2.GetComponent<Wating_Q>().Done_Q();
+      Application.LoadLevel("Wait_Q");
+    }
+    else if(Application.loadedLevelName == "Voting"){
+      GameObject objGet2 = GameObject.Find("Button_VoteDecide");
+      objGet2.GetComponent<vote>().decide();
+      Application.LoadLevel("Wait");
+    }
+    else if(Application.loadedLevelName == "Answer"){
+      GameObject objGet2 = GameObject.Find("Button_NextQuestion");
+      bool PopupFlag = objGet2.GetComponent<ButtonMgr>().getIsPopupFlag();
+      if(PopupFlag == true){
+      Application.LoadLevel("Question");
+     }
+     else{
+       PhotonNetwork.LeaveRoom();
+       PhotonNetwork.Disconnect();
+       Application.LoadLevel ("Main");
+     }
     }
   }
 }

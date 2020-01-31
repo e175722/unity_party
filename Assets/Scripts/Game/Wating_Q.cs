@@ -47,6 +47,4 @@ public class Wating_Q : MonoBehaviourPunCallbacks
       roomHash["count_Q"] = count_Q;//roomHashに辞書型として送信したい値を入れる
       PhotonNetwork.CurrentRoom.SetCustomProperties(roomHash);//この行で送信
     }
-
-
 }

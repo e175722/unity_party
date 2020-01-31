@@ -16,6 +16,8 @@ public class ButtonMgr : MonoBehaviour
   public GameObject DoneButton; //ホストのみが押せるボタンを入れておく
   public static bool isDone = false;  //同期を取るための変数。ホストがボタンを押したかどうかを入れる
 
+  public static bool isPopupFlag = false; //Answerシーンのポップアップを出すのに使う.
+
   // Start is called before the first frame update
   void Start()
   {
@@ -39,6 +41,10 @@ public class ButtonMgr : MonoBehaviour
   public void isDoneChange(){ //ボタンを押したらisDoneをtrueにする
     isDone = true;
     Debug.Log("完了がクリックされました。isDone = " + isDone);
+  }
+
+  public bool getIsPopupFlag(){ //ボタンを押したらisDoneをtrueにする
+    return isPopupFlag;
   }
 
 }
