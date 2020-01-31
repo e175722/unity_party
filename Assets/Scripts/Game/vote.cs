@@ -22,10 +22,15 @@ public class vote : MonoBehaviourPunCallbacks
   public static bool isSecond = false; //初めてVotingシーンに訪れたならfalse
   private static Hashtable roomHash = new Hashtable();//roomHashテーブル。同期を取るために必要。
   public Text SameVoteText; //最大投票数が複数出た場合に出現する
+  public static int WaitNowNum = 0; //Waitルームにいる人数
+  public static int CountNum = 0; //誰かがルームを抜けた時に使用
+
 
   void Start()
   {
     SameVoteText.text　= "";
+    CountNum = 0;
+    WaitNowNum = 0;
     //問題出題されて初めてVotingシーンに訪れたら初期化
     if(isSecond == false){
       //初期化
@@ -89,6 +94,27 @@ public class vote : MonoBehaviourPunCallbacks
 
       }
     }
+    if(propertiesThatChanged.TryGetValue("WaitNow", out object WaitNowObj)) {  //WaitNowの値を取得。取得したものはWaitNowObjに格納
+      int WaitNow = (int)WaitNowObj;
+      CountNum = CountNum + 1; //1人から送信されるたびに+1
+      if(WaitNow == 1){ //waitシーンにいるプレイヤーから送られてきたなら
+        WaitNowNum = WaitNowNum + 1;//waitシーンにいる人数カウント
+      }
+      if(CountNum == PhotonNetwork.CurrentRoom.PlayerCount){ //全員からの受信が終わったら(現在の人数=受信した数)
+        if(voteSum == WaitNowNum){ //投票数とwaitシーンにいる人数が同じなら(抜けた人はvotingシーンで抜けた)
+          if(PhotonNetwork.IsMasterClient == true){
+            roomHash["voteSum"] = voteSum;//roomHashに辞書型として送信したい値を入れる
+            PhotonNetwork.CurrentRoom.SetCustomProperties(roomHash);//この行で送信
+          }
+        }else{ //抜けた人はwaitシーンで抜けた
+          if(PhotonNetwork.IsMasterClient == true){
+            voteSum = voteSum - 1; //投票数を-1
+            roomHash["voteSum"] = voteSum;//roomHashに辞書型として送信したい値を入れる
+            PhotonNetwork.CurrentRoom.SetCustomProperties(roomHash);//この行で送信
+          }
+        }
+      }
+    }
   }
 
 
@@ -101,11 +127,24 @@ public class vote : MonoBehaviourPunCallbacks
     PhotonNetwork.CurrentRoom.SetCustomProperties(roomHash);//この行で送信
   }
 
+  //Waitシーンにいるのかどうかを送信しようかな
+  public override void OnPlayerLeftRoom(Photon.Realtime.Player player){
+    CountNum = 0;
+    WaitNowNum = 0;
+    int WaitNow = 0; //Waitシーンにいるかどうかのかの変数
+    if(Application.loadedLevelName == "Wait"){
+      WaitNow = 1;
+      roomHash["WaitNow"] = WaitNow;//roomHashに辞書型として送信したい値を入れる
+      PhotonNetwork.CurrentRoom.SetCustomProperties(roomHash);//この行で送信
+    }else{
+      roomHash["WaitNow"] = WaitNow;//roomHashに辞書型として送信したい値を入れる
+      PhotonNetwork.CurrentRoom.SetCustomProperties(roomHash);//この行で送信
+    }
+  }
+
   public int getVoteNum(){
     return voteNum;
   }
-
-
   // Update is called once per frame
   void Update()
   {

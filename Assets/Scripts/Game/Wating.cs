@@ -13,6 +13,8 @@ WaitシーンのMain_Cameraにアタッチされている
 
 public class Wating : MonoBehaviourPunCallbacks
 {
+  private static Hashtable roomHash = new Hashtable();//roomHashテーブル。同期を取るために必要。
+
   // Start is called before the first frame update
   void Start()
   {
@@ -68,6 +70,42 @@ public class Wating : MonoBehaviourPunCallbacks
         }
 
       }
+    }
+    if(propertiesThatChanged.TryGetValue("WaitNow", out object WaitNowObj)) {  //WaitNowの値を取得。取得したものはWaitNowObjに格納
+      int WaitNow = (int)WaitNowObj;
+      vote.CountNum = vote.CountNum + 1; //1人から送信されるたびに+1
+      if(WaitNow == 1){ //waitシーンにいるプレイヤーから送られてきたなら
+        vote.WaitNowNum = vote.WaitNowNum + 1; //waitシーンにいる人数カウント
+      }
+      if(vote.CountNum == PhotonNetwork.CurrentRoom.PlayerCount){ //全員からの受信が終わったら(現在の人数=受信した数)
+        if(vote.voteSum == vote.WaitNowNum){ //投票数とwaitシーンにいる人数が同じなら(抜けた人はvotingシーンで抜けた)
+          if(PhotonNetwork.IsMasterClient == true){ //マスターなら
+            roomHash["voteSum"] = vote.voteSum; //roomHashに辞書型として送信したい値を入れる
+            PhotonNetwork.CurrentRoom.SetCustomProperties(roomHash);//この行で送信
+          }
+        }else{ //抜けた人はwaitシーンで抜けた
+          if(PhotonNetwork.IsMasterClient == true){ //マスターなら
+            vote.voteSum = vote.voteSum - 1; //投票数を-1
+            roomHash["voteSum"] = vote.voteSum; //roomHashに辞書型として送信したい値を入れる
+            PhotonNetwork.CurrentRoom.SetCustomProperties(roomHash);//この行で送信
+          }
+        }
+      }
+    }
+  }
+
+  //Votingシーンで誰かが抜けたら、今のvoteSumの値を送信
+  public override void OnPlayerLeftRoom(Photon.Realtime.Player player){
+    vote.CountNum = 0;
+    vote.WaitNowNum = 0;
+    int WaitNow = 0; //Waitシーンにいるかどうかのかの変数
+    if(Application.loadedLevelName == "Wait"){
+      WaitNow = 1; //自分はwaitシーンにいるというフラグ
+      roomHash["WaitNow"] = WaitNow; //roomHashに辞書型として送信したい値を入れる
+      PhotonNetwork.CurrentRoom.SetCustomProperties(roomHash);//この行で送信
+    }else{
+      roomHash["WaitNow"] = WaitNow; //roomHashに辞書型として送信したい値を入れる
+      PhotonNetwork.CurrentRoom.SetCustomProperties(roomHash);//この行で送信
     }
   }
 
