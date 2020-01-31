@@ -17,7 +17,7 @@ public class vote : MonoBehaviourPunCallbacks
 
   public static int voteNum = 0;　//自分が投票する番号
   public static int voteSum = 0;  //投票した回数
-  public static int[] counter = new int[4]{0,0,0,0};//何番に何表投票されたかを入れておく配列
+  public static List<int> counter = new List<int>();//何番に何表投票されたかを入れておくリスト
   public static string result = "";//もっとも多い表の回答を入れておくためのstring
   public static bool isSecond = false; //初めてVotingシーンに訪れたならfalse
   private static Hashtable roomHash = new Hashtable();//roomHashテーブル。同期を取るために必要。
@@ -36,11 +36,18 @@ public class vote : MonoBehaviourPunCallbacks
       //初期化
       voteNum = 0;
       voteSum = 0;
-      counter = new int[4]{0,0,0,0};
+      if(counter.Count == 0){
+        for (int i = 0; i < PhotonNetwork.CurrentRoom.PlayerCount; i++){
+          counter.Add(0);
+        }
+      }else if(counter.Count < PhotonNetwork.CurrentRoom.PlayerCount){
+        for (int i = 0; i < PhotonNetwork.CurrentRoom.PlayerCount - counter.Count; i++){
+          counter.Add(0);
+        }
+      }
     }else{
       SameVoteText.text = "最も投票数の多かった回答が複数あったのであなたが決めましょう！";
     }
-
   }
 
   //何かしらセットされ次第始動(受信側)
@@ -63,7 +70,7 @@ public class vote : MonoBehaviourPunCallbacks
 
 
       int index2 = 0;  //最も多く表を獲得している回答のindexを格納するための変数
-      for (int i = 0; i < counter.Length; i++){  //このforで表が最も多い回答を探す
+      for (int i = 0; i < counter.Count; i++){  //このforで表が最も多い回答を探す
         if (counter[i] == intMax){
           index2 = i;
 
@@ -79,7 +86,7 @@ public class vote : MonoBehaviourPunCallbacks
 
         int voteMaxNum = 0; //最大投票数の数
 
-        for (int i = 0; i < counter.Length; i++){  //最も投票数が多いものの数を計算
+        for (int i = 0; i < counter.Count; i++){  //最も投票数が多いものの数を計算
           if (counter[i] == counter.Max()){
             voteMaxNum = voteMaxNum + 1;
           }

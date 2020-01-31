@@ -23,7 +23,7 @@ public class ClickVote : MonoBehaviour
   public void OnClick (){
     string text = this.obj.transform.Find("Text").GetComponent<Text>().text; //投票ボタンの持っているテキストを取得
     int number = 0; //number初期化。これに選んだ選択肢のindexを入れる
-    for (int i = 0; i < PlayerMgr.ansArray.Length; i++){ //全員の回答が入っているansArray配列の一つ一つと比較して、押されたボタンを判定させる。
+    for (int i = 0; i < PlayerMgr.ansArray.Count; i++){ //全員の回答が入っているansArray配列の一つ一つと比較して、押されたボタンを判定させる。
       if (PlayerMgr.ansArray[i] == text){
         number = i;
       }

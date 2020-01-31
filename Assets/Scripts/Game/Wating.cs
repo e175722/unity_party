@@ -42,7 +42,7 @@ public class Wating : MonoBehaviourPunCallbacks
       Debug.Log("-- counter end --");
 
       int index2 = 0;  //最も多く表を獲得している回答のindexを格納するための変数
-      for (int i = 0; i < vote.counter.Length; i++){  //このforで表が最も多い回答を探す
+      for (int i = 0; i < vote.counter.Count; i++){  //このforで表が最も多い回答を探す
         if (vote.counter[i] == intMax){
           index2 = i;
         }
@@ -56,7 +56,7 @@ public class Wating : MonoBehaviourPunCallbacks
 
         int voteMaxNum = 0; //最大投票数の数
 
-        for (int i = 0; i < vote.counter.Length; i++){  //最も投票数が多いものの数を計算
+        for (int i = 0; i < vote.counter.Count; i++){  //最も投票数が多いものの数を計算
           if (vote.counter[i] == vote.counter.Max()){
             voteMaxNum = voteMaxNum + 1;
           }

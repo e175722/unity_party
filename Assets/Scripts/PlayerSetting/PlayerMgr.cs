@@ -10,7 +10,7 @@ using System.Linq;
 /*
 GamePlayerプレハブにアタッチされている
 */
-public class PlayerMgr : MonoBehaviour, Photon.Pun.IPunObservable
+public class PlayerMgr : MonoBehaviourPunCallbacks, Photon.Pun.IPunObservable
 {
 
   //Playerが持ってるもの一覧
@@ -25,11 +25,18 @@ public class PlayerMgr : MonoBehaviour, Photon.Pun.IPunObservable
   public bool isDone_PlayerMgr = false;  //ユーザーが完了を押したかどうか。全員で一斉に次のシーンに行くために使う
   //public static string buttonLabel;  //いらない?わからんから残す
   public string sign; //回答と番号を送るために使う。このsignの1文字目はPlayerの番号, 2文字目以降はユーザーの回答が入る。
-  public static string[] ansArray = new string[4]; //全員の回答をいれておく配列
+  public static List<string> ansArray = new List<string>(); //全員の回答をいれておくリスト
+  public int left;
+  public string tempName;
+  public int tempNum;
 
   // Start is called before the first frame update
   void Start()
   {
+    ansArray = new List<string>();
+    for(int i = 0; i < PhotonNetwork.CurrentRoom.PlayerCount; i++){
+      ansArray.Add("#");
+    }
 
     if (Application.loadedLevelName == "Matching"){
       isDone_PlayerMgr = false;
@@ -42,6 +49,8 @@ public class PlayerMgr : MonoBehaviour, Photon.Pun.IPunObservable
 
     //photonViewオーナーの名前をテキスト表示
     PlayerName.text = photonView.Owner.NickName;
+    tempName = Convert.ToString(photonView.Owner.NickName);
+    tempNum = Convert.ToInt32(photonView.Owner.ActorNumber);
     //PlayerString = PlayerName.text;
 
     //プレイヤーネームのtext位置を決定(入ってきた順に羅列されるように)
@@ -101,6 +110,30 @@ public class PlayerMgr : MonoBehaviour, Photon.Pun.IPunObservable
     //完了ボタンを押したならtrueを更新
     isDone_PlayerMgr = ButtonMgr.isDone;
 
+  }
+
+  public override void OnPlayerLeftRoom(Photon.Realtime.Player other){
+    left = other.ActorNumber;
+
+    //プレイヤーネームのtext位置を取得
+    Vector3 Ppos = PlayerName.transform.position;
+    Vector3 Ppos2 = Answer.transform.position;
+    Vector3 Ppos3 = buttonObj.transform.position;
+
+    //photonViewオーナーの名前をテキスト表示
+    PlayerName.text = tempName;
+    //PlayerName.text = Convert.ToString(tempNum);
+    //PlayerString = PlayerName.text;
+
+    if(left <= tempNum){
+      PlayerName.transform.position = new Vector3(Ppos.x, Ppos.y + 50, Ppos.z );
+      Answer.transform.position = new Vector3(Ppos.x + 200, Ppos2.y + 50, Ppos2.z );
+      buttonObj.transform.position = new Vector3(Ppos.x, Ppos3.y + 50, Ppos3.z );
+    }
+  }
+
+  public override void OnPlayerEnteredRoom( Photon.Realtime.Player newPlayer ){
+    ansArray.Add("#");
   }
 
   //オブジェクトの変更があり次第動く。
