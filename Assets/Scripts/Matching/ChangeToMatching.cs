@@ -21,10 +21,17 @@ public class ChangeToMatching : MonoBehaviourPunCallbacks
   // Update is called once per frame
   void Update()
   {
-
   }
+public AudioClip next;
+public AudioClip back;
+AudioSource audioSource;
 
-  public void  NextScene(string resultMessage){ //ルーム作成ボタンやルーム参加ボタンが押された時に動く関数
+    public void CheckCreate(){
+         GameObject obj = (GameObject)Resources.Load ("Popup_Check(OKCancelButton)");
+      GameObject test = Instantiate(obj, new Vector3(0.0f,0.0f,0.0f), Quaternion.identity);
+    }
+
+  public void  NextScene(){ //ルーム作成ボタンやルーム参加ボタンが押された時に動く関数
 
     //以下のif文は現在不必要だが、今後必要な可能性があるため残しておく
     if (Application.loadedLevelName == "HostMaking") {
@@ -45,7 +52,9 @@ public class ChangeToMatching : MonoBehaviourPunCallbacks
     }
 
     public override void OnJoinedRoom() { //部屋にに参加出来たら動く関数
-      Application.LoadLevel("Matching");
+      audioSource = GetComponent<AudioSource>();
+      audioSource.PlayOneShot(next);
+      FadeManager.Instance.LoadScene("Matching",1.0f);
     }
 
 

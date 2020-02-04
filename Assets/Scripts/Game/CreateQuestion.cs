@@ -41,6 +41,12 @@ public class CreateQuestion : MonoBehaviourPunCallbacks
         PhotonNetwork.CurrentRoom.SetCustomProperties(roomHash);
         //Debug.Log(sentense);
       }
+      else{
+        int request = -1;
+         roomHash["request"] = request;
+         PhotonNetwork.CurrentRoom.SetCustomProperties(roomHash);
+      }
+      
     }
     else if (Application.loadedLevelName == "Answer") {
       if(PhotonNetwork.IsMasterClient){
@@ -58,14 +64,19 @@ public class CreateQuestion : MonoBehaviourPunCallbacks
       text.text = test;
       sentense = test;
     }
+    if (propertiesThatChanged.TryGetValue ("request", out object requestObj)) {
+         if(PhotonNetwork.IsMasterClient){
+            roomHash["sentense"] = sentense;
+        PhotonNetwork.CurrentRoom.SetCustomProperties(roomHash);
+        }
+        //int test = Convert.ToInt32(requestObj);
+        
+  }
   }
 
   // Update is called once per frame
   void Update()
   {
-    if(PhotonNetwork.IsMasterClient){
-      PhotonNetwork.CurrentRoom.SetCustomProperties(roomHash);
-    }
   }
 
 }

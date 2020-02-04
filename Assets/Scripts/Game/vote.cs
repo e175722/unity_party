@@ -34,6 +34,7 @@ public class vote : MonoBehaviourPunCallbacks
     //問題出題されて初めてVotingシーンに訪れたら初期化
     if(isSecond == false){
       //初期化
+      counter = new List<int>();
       voteNum = 0;
       voteSum = 0;
       if(counter.Count == 0){
@@ -49,7 +50,6 @@ public class vote : MonoBehaviourPunCallbacks
       SameVoteText.text = "最も投票数の多かった回答が複数あったのであなたが決めましょう！";
     }
   }
-
   //何かしらセットされ次第始動(受信側)
   public override void OnRoomPropertiesUpdate(Hashtable propertiesThatChanged) {
 
@@ -94,9 +94,9 @@ public class vote : MonoBehaviourPunCallbacks
 
         if(voteMaxNum == 1){ //投票最大数が一つの時
           isSecond = false;
-          Application.LoadLevel("Answer");
+          FadeManager.Instance.LoadScene("Answer",0.7f);
         }else if(voteMaxNum != 1 && PhotonNetwork.IsMasterClient == true){
-          Application.LoadLevel("Voting");
+          FadeManager.Instance.LoadScene("Voting",0.7f);
         }
 
       }
@@ -126,7 +126,7 @@ public class vote : MonoBehaviourPunCallbacks
 
 
   //決定ボタンが押されたら動く(送信側)
-  public void decide(){
+  public static void decide(){
     Debug.Log("決定ボタンが押されました," + voteNum + "に投票");
     roomHash["voteNum"] = voteNum;//roomHashに辞書型として送信したい値を入れる
     voteSum = voteSum + 1;//自分が投票した分のインクリメント

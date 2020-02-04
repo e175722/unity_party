@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class OKButton : MonoBehaviour
 {
 
+
   public float timeOut = 0.1f;
   private float timeElapsed;
   // Start is called before the first frame update
@@ -15,13 +16,14 @@ public class OKButton : MonoBehaviour
   }
   void Start()
   {
-
+    
   }
 
   // Update is called once per frame
   void Update()
   {
     timeElapsed += Time.deltaTime;
+    
 
     if(timeElapsed >= timeOut) {
       this.gameObject.GetComponent<Image>().color = Color.white;

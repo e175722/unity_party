@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class AlertOKCancel : MonoBehaviour
 {
 
+
   public float timeOut = 0.1f;
   private float timeElapsed;
   InputField  objGet;
@@ -26,6 +27,19 @@ public class AlertOKCancel : MonoBehaviour
       string name = objGet.text;
       this.GetComponent<Text>().text = "名前を " + name + " で決定してもよろしいですか？";
     }
+    else if(Application.loadedLevelName == "HostMaking"){
+      objGet = GameObject.Find("InputField_InputRoomID").GetComponent<InputField>();
+      //string name = objGet.transform.GetChild(2).gameObject.GetComponent<Text>().text;
+      string name = objGet.text;
+      this.GetComponent<Text>().text = "ルーム名" + name + " で作成してもよろしいですか？";
+    }
+    else if(Application.loadedLevelName == "GuestEnter"){
+      objGet = GameObject.Find("InputField_InputRoomID").GetComponent<InputField>();
+      //string name = objGet.transform.GetChild(2).gameObject.GetComponent<Text>().text;
+      string name = objGet.text;
+      this.GetComponent<Text>().text = "ルーム名" + name + " に入室してもよろしいですか？";
+    }
+
     else if(Application.loadedLevelName == "Matching"){
       this.GetComponent<Text>().text = "このメンバーで始めてもよろしいですか？";
     }

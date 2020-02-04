@@ -350,7 +350,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
-  m_Color: {r: 0.12365171, g: 0.46226418, b: 0.08067818, a: 1}
+  m_Color: {r: 0.12365171, g: 0.46226418, b: 0.08067818, a: 0}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -381,6 +381,9 @@ MonoBehaviour:
   Answer: {fileID: 4262750784482492664}
   isDone_PlayerMgr: 0
   sign: 
+  left: 0
+  tempName: 
+  tempNum: 0
 --- !u!114 &2789116576548353123
 MonoBehaviour:
   m_ObjectHideFlags: 0

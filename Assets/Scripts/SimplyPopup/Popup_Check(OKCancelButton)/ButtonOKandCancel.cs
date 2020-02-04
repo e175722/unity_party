@@ -4,7 +4,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using Photon.Pun;
 
-public class ButtonOKandCancel : MonoBehaviour
+
+
+public class ButtonOKandCancel : MonoBehaviourPunCallbacks
 {
   public float timeOut = 0.1f;
   private float timeElapsed;
@@ -28,6 +30,9 @@ public class ButtonOKandCancel : MonoBehaviour
 
     }
   }
+ /// public override void OnDisconnected(DisconnectCause cause){
+  //  FadeManager.Instance.LoadScene("Main",0.7f);
+  //}
 
   public void OKButton()
   {
@@ -43,31 +48,50 @@ public class ButtonOKandCancel : MonoBehaviour
       Debug.Log("名前の変更が行われました");
       Debug.Log("変更後 " + name);
     }
+    else if(Application.loadedLevelName == "HostMaking"){
+      GameObject objGet2 = GameObject.Find("Button_MakeRoom");
+      objGet2.GetComponent<ChangeToMatching>().NextScene( );
+      }
+      else if(Application.loadedLevelName == "GuestEnter"){
+      GameObject objGet2 = GameObject.Find("Button_Participate");
+      objGet2.GetComponent<ChangeToMatching>().NextScene( );
+      }
+      
     else if(Application.loadedLevelName == "Matching"){
       GameObject objGet2 = GameObject.Find("Button_ToQuestion");
       objGet2.GetComponent<ButtonMgr>().isDoneChange( );
-      Application.LoadLevel("Question");
+      //audioSource.PlayOneShot(next);
+      FadeManager.Instance.LoadScene("Question",0.7f);
+      //Application.LoadLevel("Question");
     }
     else if(Application.loadedLevelName == "Question"){
       GameObject objGet2 = GameObject.Find("Button_ToWating");
-      objGet2.GetComponent<Wating_Q>().Done_Q();
-      Application.LoadLevel("Wait_Q");
+      //objGet2.GetComponent<Wating_Q>().Done_Q();
+      //audioSource.PlayOneShot(next);
+     FadeManager.Instance.LoadScene("Wait_Q",0.7f);
+     //Application.LoadLevel("Wait_Q");
     }
     else if(Application.loadedLevelName == "Voting"){
-      GameObject objGet2 = GameObject.Find("Button_VoteDecide");
-      objGet2.GetComponent<vote>().decide();
-      Application.LoadLevel("Wait");
+     // GameObject objGet2 = GameObject.Find("Button_VoteDecide");
+      //objGet2.GetComponent<vote>().decide();
+     // audioSource.PlayOneShot(next);
+      FadeManager.Instance.LoadScene("Wait",0.7f);
+      //Application.LoadLevel("Wait");
     }
     else if(Application.loadedLevelName == "Answer"){
       GameObject objGet2 = GameObject.Find("Button_NextQuestion");
       bool PopupFlag = objGet2.GetComponent<ButtonMgr>().getIsPopupFlag();
       if(PopupFlag == true){
-      Application.LoadLevel("Question");
+     // audioSource.PlayOneShot(next);
+      FadeManager.Instance.LoadScene("Question",0.7f);
+     // Application.LoadLevel("Question");
      }
      else{
        PhotonNetwork.LeaveRoom();
        PhotonNetwork.Disconnect();
-       Application.LoadLevel ("Main");
+      // audioSource.PlayOneShot(next);
+       FadeManager.Instance.LoadScene("Main",0.7f);
+      // Application.LoadLevel ("Main");
      }
     }
   }

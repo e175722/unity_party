@@ -12,6 +12,9 @@ Wait_QシーンのWating_Q_Textにアタッチされている
 
 public class Wating_Q : MonoBehaviourPunCallbacks
 {
+   float timeOut = 1.0f;
+   float timeElapsed;
+    int temp = 0;
     public static int count_Q = 0;//Wait_Qシーンに入ってきた人のカウントをする変数
     private static Hashtable roomHash = new Hashtable();//roomHashテーブル。同期を取るために必要。
     public static int Wait_QNowNum = 0; //Wait_Qルームにいる人数
@@ -29,6 +32,18 @@ public class Wating_Q : MonoBehaviourPunCallbacks
     // Update is called once per frame
     void Update()
     {
+     if(Application.loadedLevelName == "Wait_Q"){ 
+        timeElapsed += Time.deltaTime;
+         if(timeElapsed >= timeOut){
+            if(temp == 0){
+            count_Q = count_Q + 1;//自分が投票した分のインクリメント
+      roomHash["count_Q"] = count_Q;//roomHashに辞書型として送信したい値を入れる
+      PhotonNetwork.CurrentRoom.SetCustomProperties(roomHash);//この行で送信
+       temp = 1; 
+      }
+      
+          }
+        }
     }
 
     public override void OnRoomPropertiesUpdate(Hashtable propertiesThatChanged) {
@@ -37,7 +52,8 @@ public class Wating_Q : MonoBehaviourPunCallbacks
         Debug.Log("count数 : " + count_Q);
         Debug.Log("現在の部屋人数 : " + PhotonNetwork.CurrentRoom.PlayerCount);
         if(count_Q == PhotonNetwork.CurrentRoom.PlayerCount){ //現在の人数が揃ったら次のシーンに遷移
-          Application.LoadLevel("Talking");
+        Debug.Log("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+          FadeManager.Instance.LoadScene("Talking",0.7f);
         }
       }
       if(propertiesThatChanged.TryGetValue("Wait_QNow", out object WaitNowObj)) {  //WaitNowの値を取得。取得したものはWaitNowObjに格納
@@ -65,11 +81,11 @@ public class Wating_Q : MonoBehaviourPunCallbacks
 
 
     //ボタンが押されたら動く(送信側)
-    public void Done_Q(){
-      count_Q = count_Q + 1;//自分が投票した分のインクリメント
-      roomHash["count_Q"] = count_Q;//roomHashに辞書型として送信したい値を入れる
-      PhotonNetwork.CurrentRoom.SetCustomProperties(roomHash);//この行で送信
-    }
+//     public void Done_Q(){
+//       count_Q = count_Q + 1;//自分が投票した分のインクリメント
+//       roomHash["count_Q"] = count_Q;//roomHashに辞書型として送信したい値を入れる
+//       PhotonNetwork.CurrentRoom.SetCustomProperties(roomHash);//この行で送信
+//     }
 
     //Questionシーンで誰かが抜けたら、今wait_Qにいるかどうかを送信
     public override void OnPlayerLeftRoom(Photon.Realtime.Player player){

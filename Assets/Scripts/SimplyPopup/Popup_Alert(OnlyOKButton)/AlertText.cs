@@ -5,8 +5,7 @@ using UnityEngine.UI;
 
 public class AlertText : MonoBehaviour
 {
-
-  public float timeOut = 0.1f;
+  public float timeOut = 0.2f;
   private float timeElapsed;
   // Start is called before the first frame update
   void Start()

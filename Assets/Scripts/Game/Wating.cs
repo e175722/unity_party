@@ -14,16 +14,27 @@ WaitシーンのMain_Cameraにアタッチされている
 public class Wating : MonoBehaviourPunCallbacks
 {
   private static Hashtable roomHash = new Hashtable();//roomHashテーブル。同期を取るために必要。
-
+   float timeOut = 1.0f;
+   float timeElapsed;
+   int temp=0;
   // Start is called before the first frame update
   void Start()
   {
       vote.isSecond = true;　//Waitシーンにいる時点でvoingシーンに訪れるのが初めてではないためtrueに
+      //vote.decide();
   }
 
   // Update is called once per frame
   void Update()
   {
+timeElapsed += Time.deltaTime;
+
+    if(timeElapsed >= timeOut) {
+        if(temp == 0){
+     vote.decide();
+     temp = 1;
+     }
+    }
 
   }
   //何かしらセットされ次第始動(受信側)
@@ -64,9 +75,9 @@ public class Wating : MonoBehaviourPunCallbacks
 
         if(voteMaxNum == 1){ //投票最大数が一つの時
           vote.isSecond = false;
-          Application.LoadLevel("Answer");
+         FadeManager.Instance.LoadScene("Answer",0.7f);
         }else if(voteMaxNum != 1 && PhotonNetwork.IsMasterClient == true){
-          Application.LoadLevel("Voting");
+          FadeManager.Instance.LoadScene("Voting",0.7f);
         }
 
       }

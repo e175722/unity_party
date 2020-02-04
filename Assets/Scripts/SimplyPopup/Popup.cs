@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 public class Popup : MonoBehaviour
 {
+public AudioClip back;
+public AudioClip next;
+AudioSource audioSource;
     public enum State
     {
         Open,
@@ -34,9 +37,11 @@ public class Popup : MonoBehaviour
     void Start ()
     {
         //this.GetComponent<Image>().color = new Color (0, 0, 0, 0);
+        audioSource = GetComponent<AudioSource>();
         open.Setup (gameObject);
         open.scaleEndAsObservable.Subscribe (_ => state = State.Open);
        open.Play ();
+       audioSource.PlayOneShot(next);
        close.Setup (gameObject);
         close.scaleEndAsObservable.Subscribe (_ => state = State.Open);
         //this.gameObject.GetComponent<Image>().color = Color.red;
@@ -50,8 +55,17 @@ public class Popup : MonoBehaviour
 
     public void Close ()
     {
+        //audioSource = GetComponent<AudioSource>();
+        audioSource.PlayOneShot(next);
         close.Play ();
     }
+    public void Close2 ()
+    {
+        //audioSource = GetComponent<AudioSource>();
+        audioSource.PlayOneShot(back);
+        close.Play ();
+    }
+
 
     public void Toggle ()
     {
