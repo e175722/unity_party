@@ -156,7 +156,16 @@ public class NextScene : MonoBehaviourPunCallbacks
   }
   public void  Free_To_HostFree(string resultMessage){
     if (Application.loadedLevelName == "Free"){
-      Application.LoadLevel("HostFree");
+      FadeManager.Instance.LoadScene("HostFree",0.7f);
+    }
+  }
+
+  //HostFreeシーンから他への遷移
+  public void  HostFree_To_Free(string resultMessage){
+    audioSource = GetComponent<AudioSource>();
+    if (Application.loadedLevelName == "HostFree"){
+      audioSource.PlayOneShot(back);
+      FadeManager.Instance.LoadScene("Free",0.7f);
     }
   }
 
@@ -203,7 +212,7 @@ public class NextScene : MonoBehaviourPunCallbacks
     audioSource = GetComponent<AudioSource>();
     if(Application.loadedLevelName == "Answer") {
       //FadeManager.Instance.LoadScene ("Question");
-      ButtonMgr.isPopupFlag = true;
+      Answer_Button.isPopupFlag = true;
       GameObject obj = (GameObject)Resources.Load ("Popup_Check(OKCancelButton)");
       GameObject test = Instantiate(obj, new Vector3(0.0f,0.0f,0.0f), Quaternion.identity);
     }
@@ -214,7 +223,7 @@ public class NextScene : MonoBehaviourPunCallbacks
       //PhotonNetwork.LeaveRoom();
       //PhotonNetwork.Disconnect();
       //FadeManager.Instance.LoadScene ("Main");
-      ButtonMgr.isPopupFlag = false;
+      Answer_Button.isPopupFlag = false;
       GameObject obj = (GameObject)Resources.Load ("Popup_Check(OKCancelButton)");
       GameObject test = Instantiate(obj, new Vector3(0.0f,0.0f,0.0f), Quaternion.identity);
     }

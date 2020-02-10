@@ -685,7 +685,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: New Text
+  m_Text: "\u3081\u3093\u3070\u30FC"
 --- !u!222 &1037081062
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -782,7 +782,6 @@ GameObject:
   - component: {fileID: 1325099541}
   - component: {fileID: 1325099540}
   - component: {fileID: 1325099539}
-  - component: {fileID: 1325099542}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -854,19 +853,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1325099542
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1325099538}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ce2dbe082e99748d38c59e4b7c4138ce, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  text: {fileID: 1037081061}
 --- !u!1 &1629625790
 GameObject:
   m_ObjectHideFlags: 0

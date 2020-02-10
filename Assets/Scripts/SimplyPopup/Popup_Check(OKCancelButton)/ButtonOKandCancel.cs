@@ -56,7 +56,14 @@ public class ButtonOKandCancel : MonoBehaviourPunCallbacks
       GameObject objGet2 = GameObject.Find("Button_Participate");
       objGet2.GetComponent<ChangeToMatching>().NextScene( );
       }
-      
+      else if(Application.loadedLevelName == "HostFree"){
+        GameObject objGet2 = GameObject.Find("Button_ToMaching");
+        objGet2.GetComponent<MatchingFree>().NextScene( );
+        }
+        else if(Application.loadedLevelName == "Free"){
+          GameObject objGet2 = GameObject.Find("Button_Guest");
+          objGet2.GetComponent<MatchingFree>().NextScene( );
+          }
     else if(Application.loadedLevelName == "Matching"){
       GameObject objGet2 = GameObject.Find("Button_ToQuestion");
       objGet2.GetComponent<ButtonMgr>().isDoneChange( );
@@ -79,11 +86,14 @@ public class ButtonOKandCancel : MonoBehaviourPunCallbacks
       //Application.LoadLevel("Wait");
     }
     else if(Application.loadedLevelName == "Answer"){
-      GameObject objGet2 = GameObject.Find("Button_NextQuestion");
-      bool PopupFlag = objGet2.GetComponent<ButtonMgr>().getIsPopupFlag();
+      GameObject objGet2 = GameObject.Find("Button_BackToMain");
+      bool PopupFlag = objGet2.GetComponent<Answer_Button>().getIsPopupFlag();
       if(PopupFlag == true){
      // audioSource.PlayOneShot(next);
+     GameObject objGet3 = GameObject.Find("Button_NextQuestion");
+     objGet3.GetComponent<ButtonMgr>().isDoneChange();
       FadeManager.Instance.LoadScene("Question",0.7f);
+
      // Application.LoadLevel("Question");
      }
      else{

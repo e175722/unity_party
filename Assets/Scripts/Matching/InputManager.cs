@@ -21,7 +21,7 @@ public class InputManager : MonoBehaviour {
 
 
   void Start () {
-    PhotonNetwork.LocalPlayer.NickName = "プレイヤー"  + PlayerPrefs.GetString("SetName");  //表示するプレイヤー名を入れる
+    PhotonNetwork.LocalPlayer.NickName = "プレイヤー： "  + PlayerPrefs.GetString("SetName");  //表示するプレイヤー名を入れる
     inputField = this.GetComponent<InputField> (); //自分自身を入れておく
 
     if (Application.loadedLevelName == "HostMaking") { //ここはInputFieldがやることではない。でもここ変えたら他にいくつか変える必要がある。

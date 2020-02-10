@@ -55,7 +55,7 @@ public class PlayerMgr : MonoBehaviourPunCallbacks, Photon.Pun.IPunObservable
 
     //プレイヤーネームのtext位置を決定(入ってきた順に羅列されるように)
     PlayerName.transform.position = new Vector3(Ppos.x, Ppos.y - (photonView.Owner.ActorNumber)*100, Ppos.z );
-    Answer.transform.position = new Vector3(Ppos.x + 550, Ppos2.y - (photonView.Owner.ActorNumber)*100, Ppos2.z );
+    Answer.transform.position = new Vector3(Ppos.x + 400, Ppos2.y - (photonView.Owner.ActorNumber)*100, Ppos2.z );
     buttonObj.transform.position = new Vector3(Ppos3.x, Ppos3.y  - (photonView.Owner.ActorNumber)*150, Ppos3.z );
 
     sign = Convert.ToString(photonView.Owner.ActorNumber); //ここで自分の番号をいれておく。
@@ -73,6 +73,12 @@ public class PlayerMgr : MonoBehaviourPunCallbacks, Photon.Pun.IPunObservable
     }else{
       nameTextObj.SetActive (false);
     }
+
+    if (Application.loadedLevelName == "Talking") {
+      PhotonNetwork.LocalPlayer.NickName = PlayerPrefs.GetString("SetName") + "：";
+      PlayerName.text = photonView.Owner.NickName;
+    }
+
 
     //シーンによってネットワークオブジェクトをアクティブ化
     if (Application.loadedLevelName == "Talking") {
@@ -162,9 +168,9 @@ public class PlayerMgr : MonoBehaviourPunCallbacks, Photon.Pun.IPunObservable
       //ルーム作成者が完了ボタンを押したら画面遷移
       if(isDone_PlayerMgr == true){
         if(Application.loadedLevelName == "Matching" || Application.loadedLevelName == "Answer"){
-          Application.LoadLevel ("Question");
+          FadeManager.Instance.LoadScene ("Question",0.7f);
           }else if(Application.loadedLevelName == "Talking"){
-            Application.LoadLevel ("Voting");
+            FadeManager.Instance.LoadScene ("Voting",0.7f);
           }
           ButtonMgr.isDone = false;
         }

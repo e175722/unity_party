@@ -24,7 +24,13 @@ public class MatchingFree : MonoBehaviourPunCallbacks
 
   }
 
-  public void  NextScene(string resultMessage){ //ルーム作成ボタンやルーム参加ボタンが押された時に動く関数
+
+  public void CheckCreate(){
+       GameObject obj = (GameObject)Resources.Load ("Popup_Check(OKCancelButton)");
+    GameObject test = Instantiate(obj, new Vector3(0.0f,0.0f,0.0f), Quaternion.identity);
+  }
+
+  public void  NextScene(){ //ルーム作成ボタンやルーム参加ボタンが押された時に動く関数
 
     //以下のif文は現在不必要だが、今後必要な可能性があるため残しておく
     if (Application.loadedLevelName == "HostFree") {
@@ -52,10 +58,18 @@ public class MatchingFree : MonoBehaviourPunCallbacks
     }
 
     public override void OnJoinedRoom() { //部屋にに参加出来たら動く関数
-      Application.LoadLevel("Matching");
+      FadeManager.Instance.LoadScene("Matching",0.7f);
     }
 
     public override void OnJoinRoomFailed(short returnCode, string message){ //部屋に参加出来なかったら動く関数
+      GameObject obj = (GameObject)Resources.Load ("Popup_Alert(OnlyOKButton)");
+      GameObject test = Instantiate(obj, new Vector3(0.0f,0.0f,0.0f), Quaternion.identity);
+      PhotonNetwork.Disconnect(); //Photonからの接続を切る.
+      Debug.Log("faildJoin");
+    }
+    public override void OnJoinRandomFailed(short returnCode, string message){ //部屋に参加出来なかったら動く関数
+      GameObject obj = (GameObject)Resources.Load ("Popup_Alert(OnlyOKButton)");
+      GameObject test = Instantiate(obj, new Vector3(0.0f,0.0f,0.0f), Quaternion.identity);
       PhotonNetwork.Disconnect(); //Photonからの接続を切る.
       Debug.Log("faildJoin");
     }

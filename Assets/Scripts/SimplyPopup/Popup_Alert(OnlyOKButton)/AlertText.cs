@@ -17,6 +17,12 @@ public class AlertText : MonoBehaviour
     else if (Application.loadedLevelName == "GuestEnter") {
       this.GetComponent<Text>().text = "このルームIDのルームは存在しません";
     }
+    else if (Application.loadedLevelName == "Free") {
+      this.GetComponent<Text>().text = "フリールームが存在しません。作成を行ってください";
+    }
+    else if (Application.loadedLevelName == "HostFree") {
+      this.GetComponent<Text>().text = "なぜかできません";
+    }
     else if (Application.loadedLevelName == "ChangeName") {
       this.GetComponent<Text>().text = "名前が変更されました";
     }

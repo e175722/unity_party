@@ -39,6 +39,12 @@ public class AlertOKCancel : MonoBehaviour
       string name = objGet.text;
       this.GetComponent<Text>().text = "ルーム名 " + name + " に入室してもよろしいですか？";
     }
+    else if(Application.loadedLevelName == "HostFree"){
+      this.GetComponent<Text>().text = "フリールームを作成してもいいですか？";
+    }
+    else if(Application.loadedLevelName == "Free"){
+      this.GetComponent<Text>().text = "フリールームに参加してもいいですか？";
+    }
 
     else if(Application.loadedLevelName == "Matching"){
       this.GetComponent<Text>().text = "このメンバーで始めてもよろしいですか？";
@@ -57,8 +63,8 @@ public class AlertOKCancel : MonoBehaviour
       this.GetComponent<Text>().text = "投票は　" + PlayerMgr.ansArray[voteNum] + " でよろしいですか？";
     }
     else if(Application.loadedLevelName == "Answer"){
-      GameObject objGet2 = GameObject.Find("Button_NextQuestion");
-      bool PopupFlag = objGet2.GetComponent<ButtonMgr>().getIsPopupFlag();
+      GameObject objGet2 = GameObject.Find("Button_BackToMain");
+      bool PopupFlag = objGet2.GetComponent<Answer_Button>().getIsPopupFlag();
       if(PopupFlag == true){
       this.GetComponent<Text>().text = "次の問題にいってもよろしいですか？";
      }

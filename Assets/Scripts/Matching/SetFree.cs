@@ -10,7 +10,7 @@ public class SetFree : MonoBehaviour
   public static bool isGuest_f;
   void Start()
   {
-    PhotonNetwork.LocalPlayer.NickName = "プレイヤー"  + PlayerPrefs.GetString("SetName");  //表示するプレイヤー名を入れる
+    PhotonNetwork.LocalPlayer.NickName = "プレイヤー：　"  + PlayerPrefs.GetString("SetName");  //表示するプレイヤー名を入れる
   }
 
   // Update is called once per frame

@@ -101,6 +101,7 @@ public class FadeManager : MonoBehaviour
 				scenes.Add ("Wait");
 				scenes.Add ("Wait_Q");
 				scenes.Add ("zzz");
+				scenes.Add ("HostFree");
 
 				//Sceneが一つもない .
 				if (scenes.Count == 0) {
