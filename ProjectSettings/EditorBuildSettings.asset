@@ -18,6 +18,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Free.unity
     guid: 54ced94bd487b4e96afc706b7368b37c
   - enabled: 1
+    path: Assets/Scenes/HostFree.unity
+    guid: 17ae11edf9ab44e5dbd4605519ff5302
+  - enabled: 1
     path: Assets/Scenes/GuestEnter.unity
     guid: 6bf946e207bd54c379d427a13173b2bb
   - enabled: 1

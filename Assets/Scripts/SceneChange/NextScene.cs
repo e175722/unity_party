@@ -21,9 +21,9 @@ public class NextScene : MonoBehaviourPunCallbacks
   void Update()
   {
   }
-public AudioClip next;
-public AudioClip back;
-AudioSource audioSource;
+  public AudioClip next;
+  public AudioClip back;
+  AudioSource audioSource;
   //Sign Upシーンからの遷移
   public void  SignUp_To_Start(string resultMessage){
     audioSource = GetComponent<AudioSource>();
@@ -154,6 +154,11 @@ AudioSource audioSource;
       FadeManager.Instance.LoadScene("Room",0.7f);
     }
   }
+  public void  Free_To_HostFree(string resultMessage){
+    if (Application.loadedLevelName == "Free"){
+      Application.LoadLevel("HostFree");
+    }
+  }
 
 
 
@@ -200,7 +205,7 @@ AudioSource audioSource;
       //FadeManager.Instance.LoadScene ("Question");
       ButtonMgr.isPopupFlag = true;
       GameObject obj = (GameObject)Resources.Load ("Popup_Check(OKCancelButton)");
-       GameObject test = Instantiate(obj, new Vector3(0.0f,0.0f,0.0f), Quaternion.identity);
+      GameObject test = Instantiate(obj, new Vector3(0.0f,0.0f,0.0f), Quaternion.identity);
     }
   }
   public void  Answer_To_Main(string resultMessage){
@@ -211,7 +216,7 @@ AudioSource audioSource;
       //FadeManager.Instance.LoadScene ("Main");
       ButtonMgr.isPopupFlag = false;
       GameObject obj = (GameObject)Resources.Load ("Popup_Check(OKCancelButton)");
-       GameObject test = Instantiate(obj, new Vector3(0.0f,0.0f,0.0f), Quaternion.identity);
+      GameObject test = Instantiate(obj, new Vector3(0.0f,0.0f,0.0f), Quaternion.identity);
     }
   }
 
@@ -224,7 +229,7 @@ AudioSource audioSource;
     audioSource = GetComponent<AudioSource>();
     if (Application.loadedLevelName == "Matching"){
       GameObject obj = (GameObject)Resources.Load ("Popup_Check(OKCancelButton)");
-       GameObject test = Instantiate(obj, new Vector3(0.0f,0.0f,0.0f), Quaternion.identity);
+      GameObject test = Instantiate(obj, new Vector3(0.0f,0.0f,0.0f), Quaternion.identity);
       //FadeManager.Instance.LoadScene("Question");
     }
   }
@@ -233,7 +238,7 @@ AudioSource audioSource;
     audioSource = GetComponent<AudioSource>();
     if(Application.loadedLevelName == "Question") {
       GameObject obj = (GameObject)Resources.Load ("Popup_Check(OKCancelButton)");
-       GameObject test = Instantiate(obj, new Vector3(0.0f,0.0f,0.0f), Quaternion.identity);
+      GameObject test = Instantiate(obj, new Vector3(0.0f,0.0f,0.0f), Quaternion.identity);
       //FadeManager.Instance.LoadScene ("Talking");
       //FadeManager.Instance.LoadScene ("Wait_Q");
 
@@ -251,7 +256,7 @@ AudioSource audioSource;
   public void  Voting_To_Wait(string resultMessage){
     //audioSource = GetComponent<AudioSource>();
     if(Application.loadedLevelName == "Voting") {
-        Debug.Log("aaaaaaaaaaaaaaaaaaaaaaaaaaa");
+      Debug.Log("aaaaaaaaaaaaaaaaaaaaaaaaaaa");
       GameObject obj = (GameObject)Resources.Load ("Popup_Check(OKCancelButton)");
       GameObject test = Instantiate(obj, new Vector3(0.0f,0.0f,0.0f), Quaternion.identity);
       //FadeManager.Instance.LoadScene ("Wait",0.7f);
