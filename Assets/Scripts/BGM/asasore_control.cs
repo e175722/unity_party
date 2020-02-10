@@ -34,11 +34,6 @@ public class asasore_control : MonoBehaviour
             source.clip = happytime;
             source.Play();
         }
-        if (beforeScene == "Sign Up" && nextScene.name == "Main") {
-            source.Stop();
-            source.clip = happytime;
-            source.Play();
-        }
          beforeScene = nextScene.name;
 }
             
