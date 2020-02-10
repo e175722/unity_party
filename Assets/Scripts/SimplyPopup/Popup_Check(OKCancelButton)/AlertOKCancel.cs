@@ -31,13 +31,13 @@ public class AlertOKCancel : MonoBehaviour
       objGet = GameObject.Find("InputField_InputRoomID").GetComponent<InputField>();
       //string name = objGet.transform.GetChild(2).gameObject.GetComponent<Text>().text;
       string name = objGet.text;
-      this.GetComponent<Text>().text = "ルーム名" + name + " で作成してもよろしいですか？";
+      this.GetComponent<Text>().text = "ルーム名 " + name + " で作成してもよろしいですか？";
     }
     else if(Application.loadedLevelName == "GuestEnter"){
       objGet = GameObject.Find("InputField_InputRoomID").GetComponent<InputField>();
       //string name = objGet.transform.GetChild(2).gameObject.GetComponent<Text>().text;
       string name = objGet.text;
-      this.GetComponent<Text>().text = "ルーム名" + name + " に入室してもよろしいですか？";
+      this.GetComponent<Text>().text = "ルーム名 " + name + " に入室してもよろしいですか？";
     }
 
     else if(Application.loadedLevelName == "Matching"){
@@ -54,13 +54,13 @@ public class AlertOKCancel : MonoBehaviour
       //objGet2.GetComponent<Vote>().voteVum;
       //string answer = objGet.transform.GetChild(2).gameObject.GetComponent<Text>().text;
       int voteNum = objGet2.GetComponent<vote>().getVoteNum();
-      this.GetComponent<Text>().text = "投票は" + PlayerMgr.ansArray[voteNum] + " でよろしいですか？";
+      this.GetComponent<Text>().text = "投票は　" + PlayerMgr.ansArray[voteNum] + " でよろしいですか？";
     }
     else if(Application.loadedLevelName == "Answer"){
       GameObject objGet2 = GameObject.Find("Button_NextQuestion");
       bool PopupFlag = objGet2.GetComponent<ButtonMgr>().getIsPopupFlag();
       if(PopupFlag == true){
-      this.GetComponent<Text>().text = "次の問題にいってもよろし？";
+      this.GetComponent<Text>().text = "次の問題にいってもよろしいですか？";
      }
      else{
       this.GetComponent<Text>().text = "Main画面に戻ってもいいですか？";
