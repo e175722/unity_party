@@ -18,8 +18,11 @@ public class CheckRoomID : MonoBehaviour
   void Start()
   {
     string ID = InputManager.getRoomID();
-
-    text.text = ID;
+    Debug.Log("CheckRoomIDが呼ばれたよ");
+    string ID_f = MatchingFree.getRoomID_F();
+    Debug.Log(MatchingFree.getRoomID_F());
+    text.text = ID_f;
+    // text.text = ID + ID_f;
   }
 
   // Update is called once per frame

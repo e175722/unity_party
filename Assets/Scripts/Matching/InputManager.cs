@@ -15,7 +15,9 @@ public class InputManager : MonoBehaviour {
 
   //オブジェクトと結びつける
   InputField inputField;  //自分自身を入れる変数
+  public static string pw_set, pw;//パスワード設定,　パスワード
   public Text Checktext; //RoomID確認用。
+  public Text PasswordText;
   public static string roomID; //roomIDを入れておく。他のシーンから参照する
   public static bool isGuest = false; //GuestかHostかの判定
 

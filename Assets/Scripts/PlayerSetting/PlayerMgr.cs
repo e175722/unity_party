@@ -42,6 +42,7 @@ public class PlayerMgr : MonoBehaviourPunCallbacks, Photon.Pun.IPunObservable
       isDone_PlayerMgr = false;
     }
 
+
     //プレイヤーネームのtext位置を取得
     Vector3 Ppos = PlayerName.transform.position;
     Vector3 Ppos2 = Answer.transform.position;
@@ -57,6 +58,7 @@ public class PlayerMgr : MonoBehaviourPunCallbacks, Photon.Pun.IPunObservable
     PlayerName.transform.position = new Vector3(Ppos.x, Ppos.y - (photonView.Owner.ActorNumber)*50, Ppos.z );
     Answer.transform.position = new Vector3(Ppos.x + 200, Ppos2.y - (photonView.Owner.ActorNumber)*50, Ppos2.z );
     buttonObj.transform.position = new Vector3(Ppos.x, Ppos3.y + 500 - (photonView.Owner.ActorNumber)*50, Ppos3.z );
+
 
     sign = Convert.ToString(photonView.Owner.ActorNumber); //ここで自分の番号をいれておく。
 
@@ -125,7 +127,7 @@ public class PlayerMgr : MonoBehaviourPunCallbacks, Photon.Pun.IPunObservable
     //PlayerName.text = Convert.ToString(tempNum);
     //PlayerString = PlayerName.text;
 
-    if(left <= tempNum){
+    if(left < tempNum){
       PlayerName.transform.position = new Vector3(Ppos.x, Ppos.y + 50, Ppos.z );
       Answer.transform.position = new Vector3(Ppos.x + 200, Ppos2.y + 50, Ppos2.z );
       buttonObj.transform.position = new Vector3(Ppos.x, Ppos3.y + 50, Ppos3.z );

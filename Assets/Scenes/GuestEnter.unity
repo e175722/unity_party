@@ -385,6 +385,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Checktext: {fileID: 0}
+  PasswordText: {fileID: 0}
 --- !u!1 &243187168
 GameObject:
   m_ObjectHideFlags: 0

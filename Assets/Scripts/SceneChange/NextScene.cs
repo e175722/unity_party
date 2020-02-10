@@ -124,6 +124,16 @@ public class NextScene : MonoBehaviourPunCallbacks
       Application.LoadLevel("Room");
     }
   }
+  public void  Free_To_HostFree(string resultMessage){
+    if (Application.loadedLevelName == "Free"){
+      Application.LoadLevel("HostFree");
+    }
+  }
+  public void  Free_To_GuestFree(string resultMessage){
+    if (Application.loadedLevelName == "Free"){
+      Application.LoadLevel("GuestFree");
+    }
+  }
 
 
 
@@ -184,6 +194,7 @@ public class NextScene : MonoBehaviourPunCallbacks
     if (Application.loadedLevelName == "Matching"){
       GameObject obj = (GameObject)Resources.Load ("Popup_Check(OKCancelButton)");
        GameObject test = Instantiate(obj, new Vector3(0.0f,0.0f,0.0f), Quaternion.identity);
+       //PhotonNetwork.CurrentRoom.IsOpen = false; //ルームを閉鎖する
       //Application.LoadLevel("Question");
     }
   }

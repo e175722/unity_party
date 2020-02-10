@@ -36,6 +36,7 @@ public class vote : MonoBehaviourPunCallbacks
       //初期化
       voteNum = 0;
       voteSum = 0;
+      counter = new List<int>();
       if(counter.Count == 0){
         for (int i = 0; i < PhotonNetwork.CurrentRoom.PlayerCount; i++){
           counter.Add(0);
