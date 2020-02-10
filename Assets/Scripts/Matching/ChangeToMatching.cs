@@ -47,7 +47,9 @@ AudioSource audioSource;
       if(InputManager.getIsguest() == true){  // ルームの作成者かそうでないかの判定
         PhotonNetwork.JoinRoom(ID);  //ルームに参加する
       }else{
-        PhotonNetwork.CreateRoom(ID, new RoomOptions(), TypedLobby.Default); //ルームを作成する
+        RoomOptions roomOptions = new RoomOptions();
+          roomOptions.IsVisible = false;　//ランダムなマッチングを防ぐ
+          PhotonNetwork.CreateRoom(ID, roomOptions, TypedLobby.Default); //ルームを作成する
       }
     }
 
