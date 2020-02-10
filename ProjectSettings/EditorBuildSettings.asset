@@ -21,6 +21,9 @@ EditorBuildSettings:
     path: Assets/Scenes/HostFree.unity
     guid: 98c824378ed3f43dab1e27c6022a48ed
   - enabled: 1
+    path: Assets/Scenes/HowToPlay.unity
+    guid: 8548aa66368b040958d6c9b90d281d96
+  - enabled: 1
     path: Assets/Scenes/Free.unity
     guid: 54ced94bd487b4e96afc706b7368b37c
   - enabled: 1

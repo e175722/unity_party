@@ -49,6 +49,13 @@ public class NextScene : MonoBehaviourPunCallbacks
       Application.LoadLevel ("Setting");
     }
   }
+  public void Main_To_HowToPlay(string resultMessage){
+    audioSource = GetComponent<AudioSource>();
+    if (Application.loadedLevelName == "Main") {
+      audioSource.PlayOneShot(next);
+      FadeManager.Instance.LoadScene ("HowToPlay",0.7f);
+    }
+  }
 
 
 
@@ -75,6 +82,15 @@ public class NextScene : MonoBehaviourPunCallbacks
   public void  ChangeName_To_Main(string resultMessage){
     if (Application.loadedLevelName == "ChangeName"){
       Application.LoadLevel("Main");
+    }
+  }
+
+  //HowToPlayシーンから他への遷移
+  public void  HowToPlay_To_Main(string resultMessage){
+    audioSource = GetComponent<AudioSource>();
+    if (Application.loadedLevelName == "HowToPlay"){
+      audioSource.PlayOneShot(next);
+      FadeManager.Instance.LoadScene("Main",0.7f);
     }
   }
 

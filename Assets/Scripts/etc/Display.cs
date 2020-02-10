@@ -15,7 +15,6 @@ public class Display : MonoBehaviour
 
 		this.GetComponent<Text>().text = PlayerPrefs.GetString("SetName"); //Main画面で表示している名前を取得
 		bool resString = PlayerPrefs.HasKey("SetName"); //??????
-		Debug.Log("aaaaaaa");
 	}
 
 	void Update()
